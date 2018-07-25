@@ -13,12 +13,17 @@ public abstract class Vehicle {
     protected double distanceTravelled = 0;
     protected NetworkNode destination;
 
+
     public Vehicle() {
 
     }
 
-    public void Move() {
+    public double getDistanceTravelled() {
+        return distanceTravelled;
+    }
 
+    public void Move() {
+        distanceTravelled += speed;
     }
 
     public void setRndDirection() {
