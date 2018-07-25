@@ -1,11 +1,13 @@
 plugins {
     id 'java'
+    id 'application'
 }
 
 group 'com.codecool.pionierzy'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 10
+mainClassName = 'com.codecool.pionierzy.citytrafficsim.Main'
 
 repositories {
     mavenCentral()
