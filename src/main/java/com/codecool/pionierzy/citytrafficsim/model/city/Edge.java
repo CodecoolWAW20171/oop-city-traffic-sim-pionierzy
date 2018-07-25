@@ -12,7 +12,17 @@ public class Edge implements Comparable {
 
     private List<Vehicle> vehicles;
 
-    public Edge(NetworkNode beginning, NetworkNode ending) {}
+    public Edge(NetworkNode beginning, NetworkNode ending) {
+        this.beginning = beginning;
+        this.ending = ending;
+    }
+
+    public void addVehicle(Vehicle vehicle){
+        vehicles.add(vehicle);
+    }
+    public void removeVehicle(Vehicle vehicle){
+        vehicles.remove(vehicle);
+    }
 
     @Override
     public int compareTo(Object o) {
