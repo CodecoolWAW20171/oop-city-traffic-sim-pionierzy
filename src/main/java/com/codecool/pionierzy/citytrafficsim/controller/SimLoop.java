@@ -24,4 +24,8 @@ public class SimLoop extends AnimationTimer {
         this.vehicleList.add(vehicleToAdd);
     }
 
+    public void removeVehicleFromList(Vehicle vehicle){
+        this.vehicleList.remove(vehicle);
+    }
+
 }
