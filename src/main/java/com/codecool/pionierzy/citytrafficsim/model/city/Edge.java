@@ -12,7 +12,7 @@ public class Edge implements Comparable {
 
     private List<Vehicle> vehicles;
 
-    public Edge(NetworkNode beginning, NetworkNode ending) {}
+    public Edge(NetworkNode beginning, NetworkNode ending) {this.length = 100;}
 
     @Override
     public int compareTo(Object o) {
@@ -20,7 +20,7 @@ public class Edge implements Comparable {
     }
 
     public NetworkNode getEnding() {
-        return ending; 
+        return ending;
     }
 
     public double getLength(){
