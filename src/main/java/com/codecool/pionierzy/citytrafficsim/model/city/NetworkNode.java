@@ -11,4 +11,8 @@ public class NetworkNode {
         this.x = x;
         this.y = y;
     }
+
+    public HashSet<NetworkNode> getNeighbours() {
+        return neighbours;
+    }
 }
