@@ -8,4 +8,8 @@ public class NetworkNode {
     public NetworkNode() {
 
     }
+
+    public HashSet<NetworkNode> getNeighbours() {
+        return neighbours;
+    }
 }
