@@ -10,6 +10,7 @@ public class Car extends Vehicle {
         acceleration = CAR_ACCELERATION;
         deceleration = CAR_DECELERATION;
         currentRoad = road;
+        destination = road.getEnding();
     }
 
     public void accelerate() {speed += acceleration;}

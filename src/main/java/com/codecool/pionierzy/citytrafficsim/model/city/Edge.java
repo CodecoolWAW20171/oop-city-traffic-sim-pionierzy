@@ -18,4 +18,8 @@ public class Edge implements Comparable {
     public int compareTo(Object o) {
         return 0;
     }
+
+    public NetworkNode getEnding() {
+        return ending;
+    }
 }

@@ -18,15 +18,18 @@ public abstract class Vehicle {
 
     }
 
-    public double getDistanceTravelled() {
-        return distanceTravelled;
-    }
-
     public void Move() {
         distanceTravelled += speed;
     }
 
     public void setRndDirection() {
 
+    }
+    public NetworkNode getDestination(){
+        return destination;
+    }
+
+    public double getDistanceTravelled() {
+        return distanceTravelled;
     }
 }
