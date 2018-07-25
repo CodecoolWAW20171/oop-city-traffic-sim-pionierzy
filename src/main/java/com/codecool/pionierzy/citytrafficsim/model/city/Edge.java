@@ -20,10 +20,14 @@ public class Edge implements Comparable {
     }
 
     public NetworkNode getEnding() {
-        return ending;
+        return ending; 
     }
 
     public double getLength(){
         return length;
+    }
+
+    public void addVehicle(Vehicle vehicle) {
+        vehicles.add(vehicle);
     }
 }

@@ -18,7 +18,7 @@ public class VehicleTest {
         for (int i = 0; i < 5; i++) {
             car.accelerate();
         }
-        car.Move();
+        car.move();
         Assertions.assertEquals( Car.CAR_ACCELERATION * 5, car.getDistanceTravelled());
     }
 
