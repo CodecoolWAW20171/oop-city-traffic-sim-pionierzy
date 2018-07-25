@@ -22,4 +22,8 @@ public class Edge implements Comparable {
     public NetworkNode getEnding() {
         return ending;
     }
+
+    public double getLength(){
+        return length;
+    }
 }

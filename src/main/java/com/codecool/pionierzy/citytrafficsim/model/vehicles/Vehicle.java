@@ -19,6 +19,9 @@ public abstract class Vehicle {
 
     public void Move() {
         distanceTravelled += speed;
+        if (distanceTravelled >= currentRoad.getLength()) {
+            setRndDirection();
+        }
     }
 
     public void setRndDirection() {
