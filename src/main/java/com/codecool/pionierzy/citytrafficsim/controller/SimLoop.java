@@ -12,7 +12,7 @@ public class SimLoop extends AnimationTimer {
     @Override
     public void handle(long now) {
         for (Vehicle v : vehicleList){
-            //v.move();
+            v.move();
         }
     }
 
