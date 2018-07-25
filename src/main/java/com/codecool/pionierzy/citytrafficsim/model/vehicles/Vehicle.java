@@ -1,5 +1,6 @@
 package com.codecool.pionierzy.citytrafficsim.model.vehicles;
 
+import com.codecool.pionierzy.citytrafficsim.model.city.Edge;
 import com.codecool.pionierzy.citytrafficsim.model.city.NetworkNode;
 
 public abstract class Vehicle {
@@ -8,6 +9,7 @@ public abstract class Vehicle {
     protected double speed;
     protected double acceleration;
     protected double deceleration;
+    protected Edge currentRoad;
 
     protected NetworkNode destination;
 
@@ -15,5 +17,11 @@ public abstract class Vehicle {
 
     }
 
-    public void setRndDirection() {}
+    public void Move() {
+
+    }
+
+    public void setRndDirection() {
+
+    }
 }
