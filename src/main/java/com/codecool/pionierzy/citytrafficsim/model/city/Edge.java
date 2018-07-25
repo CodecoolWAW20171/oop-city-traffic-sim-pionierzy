@@ -15,6 +15,7 @@ public class Edge implements Comparable {
     public Edge(NetworkNode beginning, NetworkNode ending) {
         this.beginning = beginning;
         this.ending = ending;
+        this.length = Math.sqrt(Math.pow((beginning.x-ending.x), 2) + Math.pow((beginning.y-ending.y), 2));
     }
 
     public void addVehicle(Vehicle vehicle){
