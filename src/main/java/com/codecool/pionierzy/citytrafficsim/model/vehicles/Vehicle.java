@@ -17,7 +17,7 @@ public abstract class Vehicle {
     protected NetworkNode destination;
 
 
-    public void Move() {
+    public void move() {
         distanceTravelled += speed;
         if (distanceTravelled >= currentRoad.getLength()) {
             setRndDirection();
