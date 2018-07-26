@@ -1,5 +1,8 @@
 package com.codecool.pionierzy.citytrafficsim.model.city;
 
+import com.codecool.pionierzy.citytrafficsim.view.city.NetworkNodeDisplay;
+import javafx.scene.layout.Pane;
+
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -8,10 +11,15 @@ public class NetworkNode {
     private int x;
     private int y;
     private HashMap<NetworkNode, Edge> roads;
+    private NetworkNodeDisplay display;
 
     public NetworkNode(int x, int y) {
         this.x = x;
         this.y = y;
+    }
+
+    public void createVisualDisplay(Pane pane) {
+        display = new NetworkNodeDisplay(this, pane);
     }
 
     public HashSet<NetworkNode> getNeighbours() {

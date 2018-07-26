@@ -1,5 +1,6 @@
 package com.codecool.pionierzy.citytrafficsim;
 
+import com.codecool.pionierzy.citytrafficsim.controller.MainController;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -16,6 +17,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         // Right now just for testing run configuration
+        MainController mainController = new MainController();
+        mainController.setPrimaryStage(primaryStage);
         Pane pane = new Pane();
         primaryStage.setScene(new Scene(pane, 600, 400));
         primaryStage.setTitle(APP_NAME);
