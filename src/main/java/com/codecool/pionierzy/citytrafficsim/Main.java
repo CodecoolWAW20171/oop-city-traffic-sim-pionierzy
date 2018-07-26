@@ -1,5 +1,7 @@
 package com.codecool.pionierzy.citytrafficsim;
 
+import com.codecool.pionierzy.citytrafficsim.controller.MainController;
+import com.codecool.pionierzy.citytrafficsim.view.city.NetworkDisplay;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -16,8 +18,11 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         // Right now just for testing run configuration
-        Pane pane = new Pane();
-        primaryStage.setScene(new Scene(pane, 600, 400));
+        MainController mainController = new MainController();
+        mainController.setPrimaryStage(primaryStage);
+        Pane networkDisplay = new NetworkDisplay();
+        mainController.startNewSimulation(networkDisplay);
+        primaryStage.setScene(new Scene(networkDisplay, 600, 400));
         primaryStage.setTitle(APP_NAME);
         primaryStage.show();
     }
