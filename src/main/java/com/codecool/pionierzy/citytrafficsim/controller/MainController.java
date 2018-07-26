@@ -2,6 +2,7 @@ package com.codecool.pionierzy.citytrafficsim.controller;
 
 import com.codecool.pionierzy.citytrafficsim.model.city.Edge;
 import com.codecool.pionierzy.citytrafficsim.model.city.NetworkNode;
+import com.codecool.pionierzy.citytrafficsim.model.vehicles.Vehicle;
 import com.codecool.pionierzy.citytrafficsim.view.city.Lane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -35,5 +36,9 @@ public class MainController {
         node3.createVisualDisplay(networkDisplay);
         node4.createVisualDisplay(networkDisplay);
 
+        SimLoop simLoop = new SimLoop();
+        VehicleGenerator generator = new VehicleGenerator(simLoop);
+        generator.addToStartEdges(roads.get(0)); //simple one edge
+        new Thread(generator).run();
     }
 }

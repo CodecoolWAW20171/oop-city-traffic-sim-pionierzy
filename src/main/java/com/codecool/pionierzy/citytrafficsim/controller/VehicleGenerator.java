@@ -33,7 +33,7 @@ public class VehicleGenerator implements Runnable{
         }
     }
 
-    public void setStartEdge(Edge startEdge) {
+    public void addToStartEdges(Edge startEdge) {
         this.startEdges.add(startEdge);
     }
 }
