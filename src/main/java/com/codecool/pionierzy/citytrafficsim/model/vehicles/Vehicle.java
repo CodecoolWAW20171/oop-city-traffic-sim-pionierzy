@@ -3,6 +3,7 @@ package com.codecool.pionierzy.citytrafficsim.model.vehicles;
 import com.codecool.pionierzy.citytrafficsim.model.city.Edge;
 import com.codecool.pionierzy.citytrafficsim.model.city.NetworkNode;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Random;
 
@@ -29,10 +30,13 @@ public abstract class Vehicle {
         int size = neighbours.size();
         int item = new Random().nextInt(size);
         int i = 0;
+        HashMap roads = node.getRoads();
         for(NetworkNode obj : neighbours)
         {
-            if (i == item)
+            if (i == item) {
                 this.destination = obj;
+                this.currentRoad = roads.get(this.destination);
+            }
             i++;
         }
     }

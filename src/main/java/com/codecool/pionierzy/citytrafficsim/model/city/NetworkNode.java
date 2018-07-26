@@ -1,11 +1,13 @@
 package com.codecool.pionierzy.citytrafficsim.model.city;
 
+import java.util.HashMap;
 import java.util.HashSet;
 
 public class NetworkNode {
     private HashSet<NetworkNode> neighbours;
     private int x;
     private int y;
+    private HashMap<NetworkNode, Edge> roads;
 
     public NetworkNode(int x, int y) {
         this.x = x;
@@ -19,4 +21,8 @@ public class NetworkNode {
     public int getX() { return x; }
 
     public int getY() { return y; }
+
+    public HashMap<NetworkNode, Edge> getRoads() {
+        return roads;
+    }
 }
