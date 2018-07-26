@@ -37,8 +37,9 @@ public class MainController {
         node4.createVisualDisplay(networkDisplay);
 
         SimLoop simLoop = new SimLoop();
+        simLoop.start();
         VehicleGenerator generator = new VehicleGenerator(simLoop);
         generator.addToStartEdges(roads.get(0)); //simple one edge
-        new Thread(generator).run();
+        new Thread(generator).start();
     }
 }
