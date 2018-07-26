@@ -18,6 +18,11 @@ public class NetworkNode {
         return neighbours;
     }
 
+    public void addNeighbour(NetworkNode node) {
+        neighbours.add(node);
+        roads.put(node, new Edge(this, node));
+    }
+
     public int getX() { return x; }
 
     public int getY() { return y; }
