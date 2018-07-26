@@ -26,14 +26,17 @@ public class NetworkNode {
         return neighbours;
     }
 
-    public void addNeighbour(NetworkNode node) {
+    public Edge addNeighbour(NetworkNode node) {
         neighbours.add(node);
-        roads.put(node, new Edge(this, node));
+        Edge edge = new Edge(this, node);
+        roads.put(node, edge);
+        return edge;
     }
 
-    public void addNeighbour(NetworkNode node, Pane pane) {
-        neighbours.add(node);
-        roads.put(node, new Edge(this, node, pane));
+    public Edge addNeighbour(NetworkNode node, Pane pane) {
+        Edge edge = new Edge(this, node, pane);
+        roads.put(node, edge);
+        return edge;
     }
 
     public int getX() { return x; }
