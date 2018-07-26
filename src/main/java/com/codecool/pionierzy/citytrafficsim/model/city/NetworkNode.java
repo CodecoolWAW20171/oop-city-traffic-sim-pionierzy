@@ -4,8 +4,8 @@ import java.util.HashSet;
 
 public class NetworkNode {
     private HashSet<NetworkNode> neighbours;
-    public int x;
-    public int y;
+    private int x;
+    private int y;
 
     public NetworkNode(int x, int y) {
         this.x = x;
@@ -15,4 +15,8 @@ public class NetworkNode {
     public HashSet<NetworkNode> getNeighbours() {
         return neighbours;
     }
+
+    public int getX() { return x; }
+
+    public int getY() { return y; }
 }

@@ -15,7 +15,7 @@ public class Edge implements Comparable {
     public Edge(NetworkNode beginning, NetworkNode ending) {
         this.beginning = beginning;
         this.ending = ending;
-        this.length = Math.sqrt(Math.pow((beginning.x-ending.x), 2) + Math.pow((beginning.y-ending.y), 2));
+        this.length = Math.sqrt(Math.pow((beginning.getX()-ending.getX()), 2) + Math.pow((beginning.getY()-ending.getY()), 2));
         this.length = 100;
     }
 
@@ -34,6 +34,10 @@ public class Edge implements Comparable {
 
     public NetworkNode getEnding() {
         return ending;
+    }
+
+    public NetworkNode getBeginning() {
+        return beginning;
     }
 
     public double getLength(){
