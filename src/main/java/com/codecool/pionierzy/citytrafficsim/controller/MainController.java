@@ -13,6 +13,7 @@ public class MainController {
     }
 
     public void startNewSimulation(Pane networkDisplay) {
+        // this is here for tests, when network controller is done this will be obsolete
         NetworkNode node1 = new NetworkNode(150, 150);
         NetworkNode node2 = new NetworkNode(150, 500);
         NetworkNode node3 = new NetworkNode(500, 500);
