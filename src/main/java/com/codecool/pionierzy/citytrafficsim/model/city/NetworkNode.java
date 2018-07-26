@@ -31,6 +31,11 @@ public class NetworkNode {
         roads.put(node, new Edge(this, node));
     }
 
+    public void addNeighbour(NetworkNode node, Pane pane) {
+        neighbours.add(node);
+        roads.put(node, new Edge(this, node, pane));
+    }
+
     public int getX() { return x; }
 
     public int getY() { return y; }
