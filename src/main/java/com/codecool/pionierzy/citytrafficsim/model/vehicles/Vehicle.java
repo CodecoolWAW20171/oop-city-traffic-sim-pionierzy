@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Random;
 
 public abstract class Vehicle {
-    
+
     protected double speed = 0;
     protected double acceleration;
     protected double deceleration;
