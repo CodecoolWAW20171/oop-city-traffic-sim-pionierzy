@@ -7,10 +7,10 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 public class NetworkNode {
-    private HashSet<NetworkNode> neighbours;
+    private HashSet<NetworkNode> neighbours = new HashSet<NetworkNode>();
     private int x;
     private int y;
-    private HashMap<NetworkNode, Edge> roads;
+    private HashMap<NetworkNode, Edge> roads = new HashMap<NetworkNode, Edge>();
     private NetworkNodeDisplay display;
 
     public NetworkNode(int x, int y) {
