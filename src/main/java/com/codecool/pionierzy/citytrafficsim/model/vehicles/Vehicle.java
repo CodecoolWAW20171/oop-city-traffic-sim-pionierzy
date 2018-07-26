@@ -35,7 +35,7 @@ public abstract class Vehicle {
         {
             if (i == item) {
                 this.destination = obj;
-                this.currentRoad = roads.get(this.destination);
+                this.currentRoad =(Edge) roads.get(this.destination);
             }
             i++;
         }
