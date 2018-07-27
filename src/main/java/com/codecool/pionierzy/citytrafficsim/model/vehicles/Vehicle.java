@@ -13,6 +13,7 @@ public abstract class Vehicle {
     protected double acceleration;
     protected double deceleration;
     protected Edge currentRoad;
+    protected double MAXSPEED;
     protected double distanceTravelled = 0;
     protected NetworkNode destination;
 
@@ -21,6 +22,12 @@ public abstract class Vehicle {
         distanceTravelled += speed;
         if (distanceTravelled >= currentRoad.getLength()) {
             setRndDirection();
+        }
+        if (speed < MAXSPEED - acceleration ) {
+            speed += acceleration;
+        }
+        else if (speed < MAXSPEED) {
+            speed = MAXSPEED;
         }
     }
 
