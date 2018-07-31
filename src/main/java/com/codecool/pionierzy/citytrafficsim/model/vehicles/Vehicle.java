@@ -54,4 +54,8 @@ public abstract class Vehicle {
     public double getDistanceTravelled() {
         return distanceTravelled;
     }
+
+    public Edge getCurrentRoad() {
+        return currentRoad;
+    }
 }

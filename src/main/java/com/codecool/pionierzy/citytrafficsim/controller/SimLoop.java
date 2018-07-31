@@ -13,6 +13,7 @@ public class SimLoop extends AnimationTimer {
     public void handle(long now) {
         for (Vehicle v : vehicleList){
             v.move();
+//            v.getCurrentRoad().getLane().dispalayVehicle(v);
         }
     }
 
