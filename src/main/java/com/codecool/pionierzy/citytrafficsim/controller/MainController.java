@@ -23,6 +23,10 @@ public class MainController {
         NetworkNode node2 = new NetworkNode(150, 500);
         NetworkNode node3 = new NetworkNode(500, 500);
         NetworkNode node4 = new NetworkNode(500, 150);
+        node1.createVisualDisplay(networkDisplay);
+        node2.createVisualDisplay(networkDisplay);
+        node3.createVisualDisplay(networkDisplay);
+        node4.createVisualDisplay(networkDisplay);
         roads.add(node1.addNeighbour(node2,networkDisplay));
         roads.add(node1.addNeighbour(node4,networkDisplay));
         roads.add(node2.addNeighbour(node1,networkDisplay));
@@ -31,15 +35,15 @@ public class MainController {
         roads.add(node3.addNeighbour(node2,networkDisplay));
         roads.add(node4.addNeighbour(node1,networkDisplay));
         roads.add(node4.addNeighbour(node3,networkDisplay));
-        node1.createVisualDisplay(networkDisplay);
-        node2.createVisualDisplay(networkDisplay);
-        node3.createVisualDisplay(networkDisplay);
-        node4.createVisualDisplay(networkDisplay);
+
 
         SimLoop simLoop = new SimLoop();
         simLoop.start();
         VehicleGenerator generator = new VehicleGenerator(simLoop);
         generator.addToStartEdges(roads.get(0)); //simple one edge
+
+
+
         new Thread(generator).start();
     }
 }
