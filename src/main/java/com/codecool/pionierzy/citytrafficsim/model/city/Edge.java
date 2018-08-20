@@ -57,4 +57,8 @@ public class Edge implements Comparable {
     public double getLength() {
         return length;
     }
+
+    public Lane getLane() {
+        return lane;
+    }
 }

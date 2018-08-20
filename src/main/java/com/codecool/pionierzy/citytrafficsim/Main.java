@@ -22,7 +22,7 @@ public class Main extends Application {
         mainController.setPrimaryStage(primaryStage);
         Pane networkDisplay = new NetworkDisplay();
         mainController.startNewSimulation(networkDisplay);
-        primaryStage.setScene(new Scene(networkDisplay, 600, 400));
+        primaryStage.setScene(new Scene(networkDisplay, 1000, 700));
         primaryStage.setTitle(APP_NAME);
         primaryStage.show();
     }

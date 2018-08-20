@@ -27,6 +27,7 @@ public class NetworkNode {
     }
 
     public Edge addNeighbour(NetworkNode node, Pane pane) {
+        neighbours.add(node);
         Edge edge = new Edge(this, node, pane);
         roads.put(node, edge);
         return edge;
