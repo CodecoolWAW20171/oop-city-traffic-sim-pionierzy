@@ -2,6 +2,7 @@ package com.codecool.pionierzy.citytrafficsim.controller;
 
 import com.codecool.pionierzy.citytrafficsim.model.city.Edge;
 import com.codecool.pionierzy.citytrafficsim.model.vehicles.Car;
+import com.codecool.pionierzy.citytrafficsim.model.vehicles.Vehicle;
 
 import java.util.ArrayList;
 
@@ -23,6 +24,7 @@ public class VehicleGenerator implements Runnable{
             for (Edge startEdge : startEdges) {
                 Car car = new Car(startEdge);
                 simLoop.addToVehicleList(car);
+                simLoop.addVehicleToLane(car);
             }
 
             try {

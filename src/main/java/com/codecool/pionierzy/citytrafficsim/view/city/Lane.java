@@ -8,6 +8,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
 
+import java.util.ArrayList;
+
 
 public class Lane extends AnchorPane {
 
@@ -16,6 +18,7 @@ public class Lane extends AnchorPane {
     private double height;
     private double angle;
     private Edge modelEdge;
+    private ArrayList<Rectangle> rectangles = new ArrayList<Rectangle>();
 
 
     public Lane(Edge edge, Pane pane, boolean AZ, boolean oneLaneOnly) {
@@ -42,10 +45,17 @@ public class Lane extends AnchorPane {
     //for tests only, animation might be based on setTopAnchor method
     public void displayVehicle(Vehicle v) {
         Rectangle car = new Rectangle(10, 50, Color.BLUE);
+        rectangles.add(car);
         this.getChildren().add(car);
         this.setTopAnchor(car, this.height - car.getHeight() - v.getDistanceTravelled() / 500);//it would be easier to manage with left side traffic
         this.setLeftAnchor(car, (width - car.getWidth()) / 2);
-//        if (this.getChildren().size()>2) this.getChildren().remove(1);
+    }
+
+    public void moveVehicle(Vehicle v){
+        for (Rectangle car : rectangles) {
+            this.setTopAnchor(car, this.height - car.getHeight() - v.getDistanceTravelled() / 500);//it would be easier to manage with left side traffic
+            this.setLeftAnchor(car, (width - car.getWidth()) / 2);
+        }
     }
 
     public Edge getModelEdge() {
