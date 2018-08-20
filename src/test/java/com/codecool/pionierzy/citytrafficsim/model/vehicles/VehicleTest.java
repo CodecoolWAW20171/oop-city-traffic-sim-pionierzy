@@ -14,7 +14,7 @@ class VehicleTest {
     void move() {
         NetworkNode node1 = new NetworkNode(5,5);
         NetworkNode node2 = new NetworkNode(100,100);
-        Edge road = new Edge(node1, node2, pane);
+        Edge road = new Edge(node1, node2);
         Car car = new Car(road);
         for (int i = 0; i < 5; i++) {
             car.accelerate();
