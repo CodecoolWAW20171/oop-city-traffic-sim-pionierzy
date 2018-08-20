@@ -15,11 +15,13 @@ public class Lane extends AnchorPane {
     private static final Color color = Color.GRAY;
     private double height;
     private double angle;
+    private Edge modelEdge;
 
 
     public Lane(Edge edge, Pane pane, boolean AZ, boolean oneLaneOnly) {
         this.height = Math.sqrt(Math.pow((edge.getBeginning().getX() - edge.getEnding().getX()), 2) + Math.pow((edge.getBeginning().getY() - edge.getEnding().getY()), 2));
         this.angle = Math.toDegrees(Math.atan2(edge.getEnding().getY() - edge.getBeginning().getY(), edge.getEnding().getX() - edge.getBeginning().getX())) + 90;
+        this.modelEdge = edge;
 
         Rectangle rect = new Rectangle(width, height, color);
         this.getChildren().add(rect);
@@ -38,11 +40,15 @@ public class Lane extends AnchorPane {
     }
 
     //for tests only, animation might be based on setTopAnchor method
-    public void dispalayVehicle(Vehicle v) {
+    public void displayVehicle(Vehicle v) {
         Rectangle car = new Rectangle(10, 50, Color.BLUE);
         this.getChildren().add(car);
         this.setTopAnchor(car, this.height - car.getHeight() - v.getDistanceTravelled() / 100);//it would be easier to manage with left side traffic
         this.setLeftAnchor(car, (width - car.getWidth()) / 2);
+    }
+
+    public Edge getModelEdge() {
+        return modelEdge;
     }
 }
 

@@ -20,7 +20,7 @@ public class Main extends Application {
         // Right now just for testing run configuration
         MainController mainController = new MainController();
         mainController.setPrimaryStage(primaryStage);
-        Pane networkDisplay = new NetworkDisplay();
+        NetworkDisplay networkDisplay = new NetworkDisplay();
         mainController.startNewSimulation(networkDisplay);
         primaryStage.setScene(new Scene(networkDisplay, 1000, 700));
         primaryStage.setTitle(APP_NAME);

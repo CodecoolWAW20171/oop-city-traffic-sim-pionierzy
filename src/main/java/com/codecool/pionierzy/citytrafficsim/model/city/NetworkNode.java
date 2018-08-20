@@ -26,9 +26,9 @@ public class NetworkNode {
         return neighbours;
     }
 
-    public Edge addNeighbour(NetworkNode node, Pane pane) {
+    public Edge addNeighbour(NetworkNode node) {
         neighbours.add(node);
-        Edge edge = new Edge(this, node, pane);
+        Edge edge = new Edge(this, node);
         roads.put(node, edge);
         return edge;
     }

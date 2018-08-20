@@ -1,6 +1,7 @@
 package com.codecool.pionierzy.citytrafficsim.controller;
 
 import com.codecool.pionierzy.citytrafficsim.model.vehicles.Vehicle;
+import com.codecool.pionierzy.citytrafficsim.view.city.NetworkDisplay;
 import javafx.animation.AnimationTimer;
 
 import java.util.LinkedList;
@@ -8,12 +9,17 @@ import java.util.LinkedList;
 public class SimLoop extends AnimationTimer {
 
     private LinkedList<Vehicle> vehicleList = new LinkedList<Vehicle>();
+    NetworkDisplay networkDisplay;
+
+    public SimLoop(NetworkDisplay networkDisplay) {
+        this.networkDisplay = networkDisplay;
+    }
 
     @Override
     public void handle(long now) {
         for (Vehicle v : vehicleList) {
             v.move();
-            v.getCurrentRoad().getLane().dispalayVehicle(v);//test
+            networkDisplay.getVehicleLane(v).displayVehicle(v);//test
         }
     }
 
