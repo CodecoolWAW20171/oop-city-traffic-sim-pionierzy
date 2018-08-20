@@ -11,5 +11,6 @@ public class NetworkController {
     /**
      * Loads map from file
      */
-    void loadMap() {}
+    void loadMap() {
+    }
 }

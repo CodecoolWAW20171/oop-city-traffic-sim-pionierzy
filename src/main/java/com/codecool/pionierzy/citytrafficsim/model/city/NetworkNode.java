@@ -26,22 +26,19 @@ public class NetworkNode {
         return neighbours;
     }
 
-    public Edge addNeighbour(NetworkNode node) {
-        neighbours.add(node);
-        Edge edge = new Edge(this, node);
-        roads.put(node, edge);
-        return edge;
-    }
-
     public Edge addNeighbour(NetworkNode node, Pane pane) {
         Edge edge = new Edge(this, node, pane);
         roads.put(node, edge);
         return edge;
     }
 
-    public int getX() { return x; }
+    public int getX() {
+        return x;
+    }
 
-    public int getY() { return y; }
+    public int getY() {
+        return y;
+    }
 
     public HashMap<NetworkNode, Edge> getRoads() {
         return roads;
