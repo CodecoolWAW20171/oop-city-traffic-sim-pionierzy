@@ -6,6 +6,7 @@ public class Truck extends Vehicle {
     public static final double TRUCK_ACCELERATION = 3;
     public static final double MAX_SPEED = 90;
     public static final double TRUCK_DECELERATION = 15;
+
     public Truck(Edge road) {
         MAXSPEED = 60;
         acceleration = TRUCK_ACCELERATION;
@@ -14,8 +15,12 @@ public class Truck extends Vehicle {
         destination = road.getEnding();
     }
 
-    public void accelerate() {speed += acceleration;}
+    public void accelerate() {
+        speed += acceleration;
+    }
 
-    public void decelerate() {speed -= acceleration;}
+    public void decelerate() {
+        speed -= acceleration;
+    }
 
 }

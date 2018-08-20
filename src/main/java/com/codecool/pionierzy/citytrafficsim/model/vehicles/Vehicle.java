@@ -23,10 +23,9 @@ public abstract class Vehicle {
         if (distanceTravelled >= currentRoad.getLength()) {
             setRndDirection();
         }
-        if (speed < MAXSPEED - acceleration ) {
+        if (speed < MAXSPEED - acceleration) {
             speed += acceleration;
-        }
-        else if (speed < MAXSPEED) {
+        } else if (speed < MAXSPEED) {
             speed = MAXSPEED;
         }
     }
@@ -38,16 +37,16 @@ public abstract class Vehicle {
         int item = new Random().nextInt(size);
         int i = 0;
         HashMap roads = node.getRoads();
-        for(NetworkNode obj : neighbours)
-        {
+        for (NetworkNode obj : neighbours) {
             if (i == item) {
                 this.destination = obj;
-                this.currentRoad =(Edge) roads.get(this.destination);
+                this.currentRoad = (Edge) roads.get(this.destination);
             }
             i++;
         }
     }
-    public NetworkNode getDestination(){
+
+    public NetworkNode getDestination() {
         return destination;
     }
 

@@ -11,7 +11,7 @@ public class SimLoop extends AnimationTimer {
 
     @Override
     public void handle(long now) {
-        for (Vehicle v : vehicleList){
+        for (Vehicle v : vehicleList) {
             v.move();
         }
     }
@@ -24,7 +24,7 @@ public class SimLoop extends AnimationTimer {
         this.vehicleList.add(vehicleToAdd);
     }
 
-    public void removeVehicleFromList(Vehicle vehicle){
+    public void removeVehicleFromList(Vehicle vehicle) {
         this.vehicleList.remove(vehicle);
     }
 
