@@ -43,8 +43,9 @@ public class Lane extends AnchorPane {
     public void displayVehicle(Vehicle v) {
         Rectangle car = new Rectangle(10, 50, Color.BLUE);
         this.getChildren().add(car);
-        this.setTopAnchor(car, this.height - car.getHeight() - v.getDistanceTravelled() / 100);//it would be easier to manage with left side traffic
+        this.setTopAnchor(car, this.height - car.getHeight() - v.getDistanceTravelled() / 500);//it would be easier to manage with left side traffic
         this.setLeftAnchor(car, (width - car.getWidth()) / 2);
+//        if (this.getChildren().size()>2) this.getChildren().remove(1);
     }
 
     public Edge getModelEdge() {

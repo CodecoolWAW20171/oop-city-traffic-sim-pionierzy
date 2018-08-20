@@ -18,10 +18,6 @@ public class NetworkNode {
         this.y = y;
     }
 
-    public void createVisualDisplay(Pane pane) {
-        display = new NetworkNodeDisplay(this, pane);
-    }
-
     public HashSet<NetworkNode> getNeighbours() {
         return neighbours;
     }
