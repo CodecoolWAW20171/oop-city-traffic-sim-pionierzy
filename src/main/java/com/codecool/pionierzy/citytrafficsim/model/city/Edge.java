@@ -3,6 +3,7 @@ package com.codecool.pionierzy.citytrafficsim.model.city;
 import com.codecool.pionierzy.citytrafficsim.model.vehicles.Vehicle;
 import javafx.scene.layout.Pane;
 
+import java.util.ArrayList;
 import java.util.List;
 
 // Implements Comparable for the purposes of path finding. Right now can be ignored.
@@ -12,7 +13,7 @@ public class Edge implements Comparable {
     private double length;
 
 
-    private List<Vehicle> vehicles;
+    private List<Vehicle> vehicles = new ArrayList<>();
 
     public Edge(NetworkNode beginning, NetworkNode ending) {
         this.beginning = beginning;
@@ -20,7 +21,7 @@ public class Edge implements Comparable {
         this.length = Math.sqrt(Math.pow((beginning.getX() - ending.getX()), 2) + Math.pow((beginning.getY() - ending.getY()), 2));
     }
 
-    public void addVehicle(Vehicle vehicle) {
+    public synchronized void addVehicle(Vehicle vehicle) {
         vehicles.add(vehicle);
     }
 

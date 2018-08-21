@@ -4,7 +4,7 @@ import com.codecool.pionierzy.citytrafficsim.model.city.Edge;
 
 public class Motorcycle extends Vehicle {
     public static final double MOTORCYCLE_ACCELERATION = 8;
-    public static final double MOTORCYCLE_DECELERATION = 25;
+    public static final double MOTORCYCLE_DECELERATION = 20;
 
     public Motorcycle(Edge road) {
         MAXSPEED = 90;

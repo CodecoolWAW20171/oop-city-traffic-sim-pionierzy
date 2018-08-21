@@ -4,7 +4,7 @@ import com.codecool.pionierzy.citytrafficsim.model.city.Edge;
 
 public class Car extends Vehicle {
     public static final double CAR_ACCELERATION = 0.2;
-    public static final double CAR_DECELERATION = 20;
+    public static final double CAR_DECELERATION = 0.6;
 
     public Car(Edge road) {
         MAXSPEED = 100;

@@ -21,16 +21,32 @@ public abstract class Vehicle {
     protected Rectangle carView;
 
     public void move() {
+        boolean canSpeedUp = true;
         List<Vehicle> vehicleList = currentRoad.getVehicles();
-        distanceTravelled += speed;
+        if (vehicleList.isEmpty()) {
+            for (Vehicle vehicle : vehicleList) {
+                if (this.distanceTravelled < vehicle.distanceTravelled && this.distanceTravelled + 120 * speed >= vehicle.distanceTravelled) {
+                    if (speed >= deceleration) {
+                        speed -= deceleration;
+                    } else {
+                        speed = 0;
+                    }
+                    canSpeedUp = false;
+                    break;
+                }
+            }
+        }
         if (distanceTravelled >= currentRoad.getLength()) {
             setRndDirection();
         }
-        if (speed < MAXSPEED - acceleration) {
-            speed += acceleration;
-        } else if (speed < MAXSPEED) {
-            speed = MAXSPEED;
+        if (canSpeedUp) {
+            if (speed < MAXSPEED - acceleration) {
+                speed += acceleration;
+            } else if (speed < MAXSPEED) {
+                speed = MAXSPEED;
+            }
         }
+        distanceTravelled += speed;
     }
 
     public void setRndDirection() {

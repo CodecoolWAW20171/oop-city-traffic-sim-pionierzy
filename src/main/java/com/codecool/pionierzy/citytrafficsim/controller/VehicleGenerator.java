@@ -25,6 +25,7 @@ public class VehicleGenerator implements Runnable{
             for (Edge startEdge : startEdges) {
                 Car car = new Car(startEdge);
                 simLoop.addToVehicleList(car);
+                startEdge.addVehicle(car);
                 Platform.runLater(
                         // JavaFX doesn't allow modify View from non-JavaFX threads, so Platform is needed.
                         () -> {
