@@ -48,7 +48,7 @@ public class MainController {
         SimLoop simLoop = new SimLoop(networkDisplay);
         simLoop.start();
         VehicleGenerator generator = new VehicleGenerator(simLoop);
-        generator.addToStartEdges(roads.get(0)); //simple one edge
+        generator.addToStartEdges(roads.get(3)); //simple one edge
 
 
         new Thread(generator).start();
