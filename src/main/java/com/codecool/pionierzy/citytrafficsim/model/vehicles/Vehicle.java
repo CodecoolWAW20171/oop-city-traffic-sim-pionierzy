@@ -4,6 +4,7 @@ import com.codecool.pionierzy.citytrafficsim.model.city.Edge;
 import com.codecool.pionierzy.citytrafficsim.model.city.NetworkNode;
 import javafx.scene.shape.Rectangle;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Random;
@@ -22,7 +23,12 @@ public abstract class Vehicle {
     public void move() {
         distanceTravelled += speed;
         if (distanceTravelled >= currentRoad.getLength()) {
+            double currentEdgeLength = currentRoad.getLength();
+            System.out.println(currentRoad+" old road");
+            System.out.println(this);
             setRndDirection();
+            System.out.println(currentRoad+" new road");
+
         }
         if (speed < MAXSPEED - acceleration) {
             speed += acceleration;
@@ -33,18 +39,16 @@ public abstract class Vehicle {
 
     public void setRndDirection() {
         NetworkNode node = currentRoad.getEnding();
-        HashSet<NetworkNode> neighbours = node.getNeighbours();
+        ArrayList<NetworkNode> neighbours = node.getNeighbours();
         int size = neighbours.size();
-        int item = new Random().nextInt(size);
-        int i = 0;
+        int index;
+
+        do{
+            index = new Random().nextInt(size);
+        }while (!neighbours.get(index).equals(currentRoad.getBeginning()));
         HashMap roads = node.getRoads();
-        for (NetworkNode obj : neighbours) {
-            if (i == item) {
-                this.destination = obj;
-                this.currentRoad = (Edge) roads.get(this.destination);
-            }
-            i++;
-        }
+        this.destination = neighbours.get(index);
+        this.currentRoad = (Edge) roads.get(this.destination);
     }
 
     public NetworkNode getDestination() {

@@ -3,11 +3,12 @@ package com.codecool.pionierzy.citytrafficsim.model.city;
 import com.codecool.pionierzy.citytrafficsim.view.city.NetworkNodeDisplay;
 import javafx.scene.layout.Pane;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
 public class NetworkNode {
-    private HashSet<NetworkNode> neighbours = new HashSet<NetworkNode>();
+    private ArrayList<NetworkNode> neighbours = new ArrayList<NetworkNode>();
     private int x;
     private int y;
     private HashMap<NetworkNode, Edge> roads = new HashMap<NetworkNode, Edge>();
@@ -18,7 +19,7 @@ public class NetworkNode {
         this.y = y;
     }
 
-    public HashSet<NetworkNode> getNeighbours() {
+    public ArrayList<NetworkNode> getNeighbours() {
         return neighbours;
     }
 
