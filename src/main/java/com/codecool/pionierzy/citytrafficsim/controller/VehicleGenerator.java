@@ -20,18 +20,16 @@ public class VehicleGenerator implements Runnable{
 
     @Override
     public void run() {
-        while (true){
-            for (Edge startEdge : startEdges) {
-                Car car = new Car(startEdge);
-                simLoop.addToVehicleList(car);
-                simLoop.addVehicleToLane(car);
-            }
+        for (Edge startEdge : startEdges) {
+            Car car = new Car(startEdge);
+            simLoop.addToVehicleList(car);
+            simLoop.addVehicleToLane(car);
+        }
 
-            try {
-                Thread.sleep(INTERVAL);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        try {
+            Thread.sleep(INTERVAL);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
