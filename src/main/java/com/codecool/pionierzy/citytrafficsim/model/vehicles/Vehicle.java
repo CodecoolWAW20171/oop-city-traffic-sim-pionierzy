@@ -59,7 +59,7 @@ public abstract class Vehicle {
 
         do{
             index = new Random().nextInt(size);
-        }while (!neighbours.get(index).equals(currentRoad.getBeginning()));
+        }while (neighbours.get(index).equals(currentRoad.getBeginning()));
         HashMap roads = node.getRoads();
         this.destination = neighbours.get(index);
         this.currentRoad = (Edge) roads.get(this.destination);
