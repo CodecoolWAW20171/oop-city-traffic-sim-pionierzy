@@ -1,7 +1,6 @@
 package com.codecool.pionierzy.citytrafficsim.model.city;
 
 import com.codecool.pionierzy.citytrafficsim.view.city.NetworkNodeDisplay;
-import javafx.scene.layout.Pane;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -7,6 +7,7 @@ import javafx.scene.shape.Rectangle;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
 
 public abstract class Vehicle {
@@ -21,16 +22,33 @@ public abstract class Vehicle {
     protected Rectangle carView;
 
     public void move() {
-        distanceTravelled += speed;
+        boolean canSpeedUp = true;
+        List<Vehicle> vehicleList = currentRoad.getVehicles();
+        if (vehicleList.isEmpty()) {
+            for (Vehicle vehicle : vehicleList) {
+                if (this.distanceTravelled < vehicle.distanceTravelled && this.distanceTravelled + 120 * speed >= vehicle.distanceTravelled) {
+                    if (speed >= deceleration) {
+                        speed -= deceleration;
+                    } else {
+                        speed = 0;
+                    }
+                    canSpeedUp = false;
+                    break;
+                }
+            }
+        }
         if (distanceTravelled >= currentRoad.getLength()) {
             double currentEdgeLength = currentRoad.getLength();
             setRndDirection();
         }
-        if (speed < MAXSPEED - acceleration) {
-            speed += acceleration;
-        } else if (speed < MAXSPEED) {
-            speed = MAXSPEED;
+        if (canSpeedUp) {
+            if (speed < MAXSPEED - acceleration) {
+                speed += acceleration;
+            } else if (speed < MAXSPEED) {
+                speed = MAXSPEED;
+            }
         }
+        distanceTravelled += speed;
     }
 
     public void setRndDirection() {
