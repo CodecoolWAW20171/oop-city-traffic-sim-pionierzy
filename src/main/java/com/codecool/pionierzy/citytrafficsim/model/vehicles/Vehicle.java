@@ -61,6 +61,7 @@ public abstract class Vehicle {
             if (i == item) {
                 this.destination = obj;
                 this.currentRoad = (Edge) roads.get(this.destination);
+                this.distanceTravelled = 0;
             }
             i++;
         }
