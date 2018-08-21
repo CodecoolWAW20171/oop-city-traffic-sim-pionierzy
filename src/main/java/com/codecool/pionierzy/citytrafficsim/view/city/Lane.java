@@ -48,9 +48,9 @@ public class Lane extends AnchorPane {
     public void displayVehicle(Vehicle v) {
         Rectangle car = new Rectangle(CARWIDTH, CARHEIGHT, Color.BLUE);
         v.setCarView(car);
-        this.getChildren().add(car);
-        this.setTopAnchor(car, this.height - car.getHeight() - v.getDistanceTravelled() / 500);//it would be easier to manage with left side traffic
-        this.setLeftAnchor(car, (width - car.getWidth()) / 2);
+        this.getChildren().add(v.getCarView());
+        this.setTopAnchor(v.getCarView(), this.height - v.getCarView().getHeight() - v.getDistanceTravelled() / 500);//it would be easier to manage with left side traffic
+        this.setLeftAnchor(v.getCarView(), (width - v.getCarView().getWidth()) / 2);
     }
 
     public void moveVehicle(Vehicle v){

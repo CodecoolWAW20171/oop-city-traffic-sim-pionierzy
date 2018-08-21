@@ -3,6 +3,7 @@ package com.codecool.pionierzy.citytrafficsim.controller;
 import com.codecool.pionierzy.citytrafficsim.model.city.Edge;
 import com.codecool.pionierzy.citytrafficsim.model.vehicles.Car;
 import com.codecool.pionierzy.citytrafficsim.model.vehicles.Vehicle;
+import javafx.application.Platform;
 
 import java.util.ArrayList;
 
@@ -20,16 +21,23 @@ public class VehicleGenerator implements Runnable{
 
     @Override
     public void run() {
-        for (Edge startEdge : startEdges) {
-            Car car = new Car(startEdge);
-            simLoop.addToVehicleList(car);
-            simLoop.addVehicleToLane(car);
-        }
+        while (true) { // scheduler is needed !!!!!!!!!!
+            for (Edge startEdge : startEdges) {
+                Car car = new Car(startEdge);
+                simLoop.addToVehicleList(car);
+                Platform.runLater(
+                        // JavaFX doesn't allow modify View from non-JavaFX threads, so Platform is needed.
+                        () -> {
+                            simLoop.addVehicleToLane(car);
+                        }
+                );
+            }
 
-        try {
-            Thread.sleep(INTERVAL);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            try {
+                Thread.sleep(INTERVAL);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 
