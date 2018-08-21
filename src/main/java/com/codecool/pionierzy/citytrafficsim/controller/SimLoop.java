@@ -20,11 +20,15 @@ public class SimLoop extends AnimationTimer {
         for (Vehicle v : vehicleList) {
             v.move();
             networkDisplay.getVehicleLane(v).moveVehicle(v);//test
+            if (v.getDistanceTravelled() > v.getCurrentRoad().getLength()) {
+                System.out.println("change! " + v.toString());
+                networkDisplay.getVehicleLane(v).displayVehicle(v);
+            }
         }
     }
 
     public void addVehicleToLane(Vehicle v){
-            networkDisplay.getVehicleLane(v).displayVehicle(v);//test
+            networkDisplay.getVehicleLane(v).displayVehicle(v);
     }
 
     public LinkedList<Vehicle> getVehicleList() {
