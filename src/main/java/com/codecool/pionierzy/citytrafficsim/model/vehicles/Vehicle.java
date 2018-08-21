@@ -11,21 +11,22 @@ import java.util.Random;
 
 public abstract class Vehicle {
 
-    protected double speed = 0;
-    protected double acceleration;
-    protected double deceleration;
-    protected Edge currentRoad;
-    protected double MAXSPEED;
-    protected double distanceTravelled = 0;
-    protected NetworkNode destination;
-    protected Rectangle carView;
+    double speed = 0;
+    double acceleration;
+    double deceleration;
+    Edge currentRoad;
+    double MAXSPEED;
+    private double distanceTravelled = 0;
+    NetworkNode destination;
+    private Rectangle carView;
 
     public void move() {
         boolean canSpeedUp = true;
         List<Vehicle> vehicleList = currentRoad.getVehicles();
-        if (vehicleList.isEmpty()) {
+        if (!vehicleList.isEmpty()) {
             for (Vehicle vehicle : vehicleList) {
-                if (this.distanceTravelled < vehicle.distanceTravelled && this.distanceTravelled + 120 * speed >= vehicle.distanceTravelled) {
+                if (this.distanceTravelled < vehicle.distanceTravelled
+                        && this.distanceTravelled + 120 * speed >= vehicle.distanceTravelled) {
                     if (speed >= deceleration) {
                         speed -= deceleration;
                     } else {
@@ -49,7 +50,7 @@ public abstract class Vehicle {
         distanceTravelled += speed;
     }
 
-    public void setRndDirection() {
+    private void setRndDirection() {
         NetworkNode node = currentRoad.getEnding();
         HashSet<NetworkNode> neighbours = node.getNeighbours();
         int size = neighbours.size();
@@ -60,7 +61,6 @@ public abstract class Vehicle {
             if (i == item) {
                 this.destination = obj;
                 this.currentRoad = (Edge) roads.get(this.destination);
-                this.distanceTravelled = 0;
             }
             i++;
         }
