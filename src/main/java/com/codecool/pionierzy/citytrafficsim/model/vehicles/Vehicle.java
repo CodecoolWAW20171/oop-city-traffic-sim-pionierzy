@@ -62,8 +62,10 @@ public abstract class Vehicle {
         }while (neighbours.get(index).equals(currentRoad.getBeginning()));
         HashMap roads = node.getRoads();
         this.destination = neighbours.get(index);
+        this.currentRoad.removeVehicle(this);
         this.currentRoad = (Edge) roads.get(this.destination);
-//        this.distanceTravelled = 0;
+        this.currentRoad.addVehicle(this);
+        this.distanceTravelled = 0;
     }
 
     public NetworkNode getDestination() {
