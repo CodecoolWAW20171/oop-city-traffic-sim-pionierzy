@@ -24,11 +24,7 @@ public abstract class Vehicle {
         distanceTravelled += speed;
         if (distanceTravelled >= currentRoad.getLength()) {
             double currentEdgeLength = currentRoad.getLength();
-            System.out.println(currentRoad+" old road");
-            System.out.println(this);
             setRndDirection();
-            System.out.println(currentRoad+" new road");
-
         }
         if (speed < MAXSPEED - acceleration) {
             speed += acceleration;
@@ -49,6 +45,7 @@ public abstract class Vehicle {
         HashMap roads = node.getRoads();
         this.destination = neighbours.get(index);
         this.currentRoad = (Edge) roads.get(this.destination);
+//        this.distanceTravelled = 0;
     }
 
     public NetworkNode getDestination() {
