@@ -6,20 +6,19 @@ import javafx.scene.shape.Rectangle;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 
 public abstract class Vehicle {
 
-    protected double speed = 0;
-    protected double acceleration;
-    protected double deceleration;
-    protected Edge currentRoad;
-    protected double MAXSPEED;
-    protected double distanceTravelled = 0;
-    protected NetworkNode destination;
-    protected Rectangle carView;
+    double speed = 0;
+    double acceleration;
+    double deceleration;
+    Edge currentRoad;
+    double MAXSPEED;
+    private double distanceTravelled = 0;
+    NetworkNode destination;
+    private Rectangle carView;
 
     public void move() {
         boolean canSpeedUp = true;
@@ -57,9 +56,9 @@ public abstract class Vehicle {
         int size = neighbours.size();
         int index;
 
-        do{
+        do {
             index = new Random().nextInt(size);
-        }while (!neighbours.get(index).equals(currentRoad.getBeginning()));
+        } while (!neighbours.get(index).equals(currentRoad.getBeginning()));
         HashMap roads = node.getRoads();
         this.destination = neighbours.get(index);
         this.currentRoad.removeVehicle(this);

@@ -10,7 +10,7 @@ public class NetworkNodeDisplay extends Circle {
     public final static int radius = 60; //half of the widest connected road total width, cars should stop before (also in model)
     private static final Color color = Color.ALICEBLUE;
 
-    public NetworkNodeDisplay(NetworkNode node, Pane pane){
+    public NetworkNodeDisplay(NetworkNode node, Pane pane) {
         this.setCenterX(node.getX());
         this.setCenterY(node.getY());
         this.setFill(color);
