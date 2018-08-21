@@ -24,7 +24,7 @@ public abstract class Vehicle {
     public void move() {
         boolean canSpeedUp = true;
         List<Vehicle> vehicleList = currentRoad.getVehicles();
-        if (vehicleList.isEmpty()) {
+        if (!vehicleList.isEmpty()) {
             for (Vehicle vehicle : vehicleList) {
                 if (this.distanceTravelled < vehicle.distanceTravelled && this.distanceTravelled + 120 * speed >= vehicle.distanceTravelled) {
                     if (speed >= deceleration) {
