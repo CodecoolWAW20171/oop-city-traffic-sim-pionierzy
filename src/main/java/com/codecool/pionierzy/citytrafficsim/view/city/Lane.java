@@ -2,6 +2,7 @@ package com.codecool.pionierzy.citytrafficsim.view.city;
 
 import com.codecool.pionierzy.citytrafficsim.model.city.Edge;
 import com.codecool.pionierzy.citytrafficsim.model.vehicles.Vehicle;
+import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -18,7 +19,8 @@ public class Lane extends AnchorPane {
     private double height;
     private double angle;
     private Edge modelEdge;
-    private ArrayList<Rectangle> rectangles = new ArrayList<Rectangle>();
+    private final int CARWIDTH = 6;
+    private final int CARHEIGHT = 20;
 
 
     public Lane(Edge edge, Pane pane, boolean AZ, boolean oneLaneOnly) {
@@ -44,18 +46,16 @@ public class Lane extends AnchorPane {
 
     //for tests only, animation might be based on setTopAnchor method
     public void displayVehicle(Vehicle v) {
-        Rectangle car = new Rectangle(10, 50, Color.BLUE);
-        rectangles.add(car);
-        this.getChildren().add(car);
-        this.setTopAnchor(car, this.height - car.getHeight() - v.getDistanceTravelled() / 500);//it would be easier to manage with left side traffic
-        this.setLeftAnchor(car, (width - car.getWidth()) / 2);
+        Rectangle car = new Rectangle(CARWIDTH, CARHEIGHT, Color.BLUE);
+        v.setCarView(car);
+        this.getChildren().add(v.getCarView());
+        this.setTopAnchor(v.getCarView(), this.height - v.getCarView().getHeight() - v.getDistanceTravelled() / 500);//it would be easier to manage with left side traffic
+        this.setLeftAnchor(v.getCarView(), (width - v.getCarView().getWidth()) / 2);
     }
 
     public void moveVehicle(Vehicle v){
-        for (Rectangle car : rectangles) {
-            this.setTopAnchor(car, this.height - car.getHeight() - v.getDistanceTravelled() / 500);//it would be easier to manage with left side traffic
-            this.setLeftAnchor(car, (width - car.getWidth()) / 2);
-        }
+        this.setTopAnchor(v.getCarView(), this.height - v.getCarView().getHeight() - v.getDistanceTravelled() / 500);//it would be easier to manage with left side traffic
+        this.setLeftAnchor(v.getCarView(), (width - v.getCarView().getWidth()) / 2);
     }
 
     public Edge getModelEdge() {
