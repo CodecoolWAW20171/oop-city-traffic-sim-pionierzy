@@ -45,4 +45,8 @@ public class Edge implements Comparable {
     public double getLength() {
         return length;
     }
+
+    public List<Vehicle> getVehicles() {
+        return vehicles;
+    }
 }

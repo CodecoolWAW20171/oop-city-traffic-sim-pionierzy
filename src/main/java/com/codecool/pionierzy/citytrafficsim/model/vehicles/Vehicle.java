@@ -5,6 +5,7 @@ import com.codecool.pionierzy.citytrafficsim.model.city.NetworkNode;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
 
 public abstract class Vehicle {
@@ -19,6 +20,7 @@ public abstract class Vehicle {
 
 
     public void move() {
+        List<Vehicle> vehicleList = currentRoad.getVehicles();
         distanceTravelled += speed;
         if (distanceTravelled >= currentRoad.getLength()) {
             setRndDirection();
