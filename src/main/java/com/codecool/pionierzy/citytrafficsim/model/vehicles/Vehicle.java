@@ -2,6 +2,7 @@ package com.codecool.pionierzy.citytrafficsim.model.vehicles;
 
 import com.codecool.pionierzy.citytrafficsim.model.city.Edge;
 import com.codecool.pionierzy.citytrafficsim.model.city.NetworkNode;
+import javafx.scene.shape.Rectangle;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -16,7 +17,7 @@ public abstract class Vehicle {
     protected double MAXSPEED;
     protected double distanceTravelled = 0;
     protected NetworkNode destination;
-
+    protected Rectangle carView;
 
     public void move() {
         distanceTravelled += speed;
@@ -56,5 +57,13 @@ public abstract class Vehicle {
 
     public Edge getCurrentRoad() {
         return currentRoad;
+    }
+
+    public Rectangle getCarView() {
+        return carView;
+    }
+
+    public void setCarView(Rectangle carView) {
+        this.carView = carView;
     }
 }
