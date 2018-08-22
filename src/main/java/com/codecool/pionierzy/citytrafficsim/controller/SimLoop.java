@@ -5,6 +5,7 @@ import com.codecool.pionierzy.citytrafficsim.view.city.Lane;
 import com.codecool.pionierzy.citytrafficsim.view.city.NetworkDisplay;
 import javafx.animation.AnimationTimer;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 
 public class SimLoop extends AnimationTimer {
@@ -19,7 +20,8 @@ public class SimLoop extends AnimationTimer {
 
     @Override
     public void handle(long now) {
-        for (Vehicle v : vehicleList) {
+        for (Iterator<Vehicle> iterator = vehicleList.iterator(); iterator.hasNext();) {
+                Vehicle v = iterator.next();
 
             v.move();
             currentLane = networkDisplay.getVehicleLane(v);
@@ -28,7 +30,7 @@ public class SimLoop extends AnimationTimer {
 
                 currentLane.deleteCarView(v);
                 if (v.getDestination().getNeighbours().size() == 1){
-                    removeVehicleFromList(v);
+                    iterator.remove();
                     continue;
                 }
                 v.setRndDirection();
