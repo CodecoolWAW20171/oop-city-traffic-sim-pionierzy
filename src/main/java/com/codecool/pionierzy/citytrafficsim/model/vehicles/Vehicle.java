@@ -24,21 +24,21 @@ public abstract class Vehicle {
         boolean canSpeedUp = true;
         List<Vehicle> vehicleList = currentRoad.getVehicles();
         if (distanceTravelled + 240 * speed >= currentRoad.getLength() && speed > acceleration * 180) {
-            slowDown(0.7);
+            slowDown(0.4);
             canSpeedUp = false;
         }
         if (!vehicleList.isEmpty()) {
             for (Vehicle vehicle : vehicleList) {
-                if (this.distanceTravelled < vehicle.distanceTravelled && this.distanceTravelled + 120 * speed >= vehicle.distanceTravelled) {
+                if (!vehicle.equals(this) && this.distanceTravelled <= vehicle.distanceTravelled && this.distanceTravelled + 120 * this.speed >= vehicle.distanceTravelled) {
                     if (vehicle.getSpeed() > this.speed) {
-                        break;
+                        slowDown(0.2);
                     }
                     if (vehicle.getSpeed() < this.speed) {
                         if (canSpeedUp == false) {
                             slowDown(0.3); // if slowed down already, can't slow down with more than 100% breaking power;
                         }
                         else {
-                            slowDown(0.8);
+                            slowDown(1.0);
                         }
                     }
                     canSpeedUp = false;
