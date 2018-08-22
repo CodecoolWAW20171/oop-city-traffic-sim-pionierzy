@@ -20,6 +20,7 @@ public class SimLoop extends AnimationTimer {
     @Override
     public void handle(long now) {
         for (Vehicle v : vehicleList) {
+            if (v == null) continue;
             v.move();
             currentLane = networkDisplay.getVehicleLane(v);
             currentLane.moveVehicle(v);//test

@@ -4,7 +4,6 @@ import com.codecool.pionierzy.citytrafficsim.view.city.NetworkNodeDisplay;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 
 public class NetworkNode {
     private ArrayList<NetworkNode> neighbours = new ArrayList<NetworkNode>();

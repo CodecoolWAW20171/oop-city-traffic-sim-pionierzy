@@ -23,21 +23,19 @@ public abstract class Vehicle {
     public void move() {
         boolean canSpeedUp = true;
         List<Vehicle> vehicleList = currentRoad.getVehicles();
-        if (!vehicleList.isEmpty()) {
+        if (distanceTravelled + 240 * speed >= currentRoad.getLength() && speed > acceleration * 180) {
+            slowDown(0.7);
+        }
+        else if (!vehicleList.isEmpty()) {
             for (Vehicle vehicle : vehicleList) {
                 if (this.distanceTravelled < vehicle.distanceTravelled && this.distanceTravelled + 120 * speed >= vehicle.distanceTravelled) {
-                    if (speed >= deceleration) {
-                        speed -= deceleration;
-                    } else {
-                        speed = 0;
-                    }
+                    slowDown(0.4);
                     canSpeedUp = false;
                     break;
                 }
             }
         }
         if (distanceTravelled >= currentRoad.getLength()) {
-            double currentEdgeLength = currentRoad.getLength();
             setRndDirection();
         }
         if (canSpeedUp) {
@@ -50,7 +48,16 @@ public abstract class Vehicle {
         distanceTravelled += speed;
     }
 
+    private void slowDown(Double decelerationSpeed) {
+        // deceleration Speed must be a double between 0 and 1
+        if (speed >= deceleration * decelerationSpeed) {
+            speed -= deceleration * decelerationSpeed;
+        } else {
+            speed = 0;
+        }
+    }
     public void setRndDirection() {
+        System.out.println(this.currentRoad);
         NetworkNode node = currentRoad.getEnding();
         ArrayList<NetworkNode> neighbours = node.getNeighbours();
         int size = neighbours.size();
@@ -63,6 +70,7 @@ public abstract class Vehicle {
         this.destination = neighbours.get(index);
         this.currentRoad.removeVehicle(this);
         this.currentRoad = (Edge) roads.get(this.destination);
+        System.out.println(this.currentRoad);
         this.distanceTravelled = 0;
     }
 
