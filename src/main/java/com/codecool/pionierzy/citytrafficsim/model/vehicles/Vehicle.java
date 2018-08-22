@@ -68,7 +68,6 @@ public abstract class Vehicle {
         }
     }
     public void setRndDirection() {
-        System.out.println(this.currentRoad);
         NetworkNode node = currentRoad.getEnding();
         ArrayList<NetworkNode> neighbours = node.getNeighbours();
         int size = neighbours.size();
@@ -80,7 +79,6 @@ public abstract class Vehicle {
         this.destination = neighbours.get(index);
         this.currentRoad.removeVehicle(this);
         this.currentRoad = (Edge) roads.get(this.destination);
-        System.out.println(this.currentRoad);
         this.distanceTravelled = 0;
     }
 
