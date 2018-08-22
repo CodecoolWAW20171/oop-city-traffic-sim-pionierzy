@@ -35,6 +35,7 @@ public class MainController {
 
 
 
+
         roads.add(node1.addNeighbour(node2));
         roads.add(node1.addNeighbour(node5));
         roads.add(node2.addNeighbour(node1));
@@ -63,7 +64,7 @@ public class MainController {
 
 
         new Thread(generator).start();
-//        generator.generateOneCar(roads.get(5));  //testing purposes
+
 
     }
 }
