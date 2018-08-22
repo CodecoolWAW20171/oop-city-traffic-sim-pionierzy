@@ -41,15 +41,15 @@ public class SimLoop extends AnimationTimer {
             networkDisplay.getVehicleLane(v).displayVehicle(v);
     }
 
-    public LinkedList<Vehicle> getVehicleList() {
+    public synchronized LinkedList<Vehicle> getVehicleList() {
         return vehicleList;
     }
 
-    public void addToVehicleList(Vehicle vehicleToAdd) {
+    public synchronized void addToVehicleList(Vehicle vehicleToAdd) {
         this.vehicleList.add(vehicleToAdd);
     }
 
-    public void removeVehicleFromList(Vehicle vehicle) {
+    public synchronized void removeVehicleFromList(Vehicle vehicle) {
         this.vehicleList.remove(vehicle);
     }
 
