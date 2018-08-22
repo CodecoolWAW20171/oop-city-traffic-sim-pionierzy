@@ -18,7 +18,7 @@ public class NetworkDisplay extends Pane {
         images.put("MOTORCYCLE", new Image("motorcycle.jpg"));
     }
 
-    public void createVisualDisplay(Edge edge) {
+    public void createLaneView(Edge edge) {
         this.lanes.add(new Lane(edge, this, true, false));
     }
 
