@@ -59,7 +59,7 @@ public class Lane extends AnchorPane {
     }
 
     public void deleteCarView(Vehicle v){
-        this.getChildren().remove(v);
+        this.getChildren().remove(v.getCarView());
     }
 
     public Edge getModelEdge() {

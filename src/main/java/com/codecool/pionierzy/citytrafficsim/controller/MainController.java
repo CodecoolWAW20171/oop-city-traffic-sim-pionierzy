@@ -52,7 +52,7 @@ public class MainController {
 
 
 //        new Thread(generator).start();
-        new Thread(generator).start();  //testing purposes
+        generator.generateOneCar(roads.get(3));
 
     }
 }

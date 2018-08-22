@@ -25,7 +25,7 @@ public class SimLoop extends AnimationTimer {
             currentLane.moveVehicle(v);//test
             if (v.getDistanceTravelled() >= v.getCurrentRoad().getLength()) {
                 currentLane.deleteCarView(v);
-                System.out.println("change! " + v.toString());
+                v.setRndDirection();
                 networkDisplay.getVehicleLane(v).displayVehicle(v);
             }
         }

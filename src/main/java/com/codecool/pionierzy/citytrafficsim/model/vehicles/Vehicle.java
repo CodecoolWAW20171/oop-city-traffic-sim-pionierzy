@@ -36,10 +36,10 @@ public abstract class Vehicle {
                 }
             }
         }
-        if (distanceTravelled >= currentRoad.getLength()) {
-            double currentEdgeLength = currentRoad.getLength();
-            setRndDirection();
-        }
+//        if (distanceTravelled >= currentRoad.getLength()) {
+//            double currentEdgeLength = currentRoad.getLength();
+//            setRndDirection();
+//        }
         if (canSpeedUp) {
             if (speed < MAXSPEED - acceleration) {
                 speed += acceleration;
