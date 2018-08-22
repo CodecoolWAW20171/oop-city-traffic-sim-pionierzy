@@ -1,0 +1,9 @@
+.lane {
+    -fx-background-image: url(../arrow.png);
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-color: gray;
+    -fx-border-width: 1;
+    -fx-border-color: #fff;
+    -fx-border-style: dashed;
+}

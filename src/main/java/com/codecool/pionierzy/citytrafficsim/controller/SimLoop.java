@@ -7,7 +7,7 @@ import java.util.LinkedList;
 
 public class SimLoop extends AnimationTimer {
 
-    private LinkedList<Vehicle> vehicleList = new LinkedList<Vehicle>();
+    private LinkedList<Vehicle> vehicleList = new LinkedList<>();
 
     @Override
     public void handle(long now) {

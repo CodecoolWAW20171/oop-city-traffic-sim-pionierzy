@@ -13,7 +13,6 @@ import javafx.scene.transform.Translate;
 public class Lane extends Pane {
 
     private static final double WIDTH = 10;
-    private static final Color COLOR = Color.DARKBLUE;
 
 
     public Lane(Edge edge) {
@@ -25,10 +24,12 @@ public class Lane extends Pane {
         Vertex to = edge.to();
         double angle = Math.toDegrees(-Math.PI / 2 +
                 Math.atan2(to.getY() - from.getY(), to.getX() - from.getX()));
+
         Translate translate = new Translate(from.getX() - WIDTH / 2, from.getY());
         Rotate rotate = new Rotate(angle, WIDTH / 2, 0);
         this.getTransforms().addAll(translate, rotate);
-        this.setBackground(new Background(new BackgroundFill(COLOR, CornerRadii.EMPTY, Insets.EMPTY)));
+
+        this.getStyleClass().add("lane");
     }
 }
 
