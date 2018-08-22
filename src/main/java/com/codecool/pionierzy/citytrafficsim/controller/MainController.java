@@ -2,6 +2,8 @@ package com.codecool.pionierzy.citytrafficsim.controller;
 
 import com.codecool.pionierzy.citytrafficsim.model.city.Edge;
 import com.codecool.pionierzy.citytrafficsim.model.city.NetworkNode;
+import com.codecool.pionierzy.citytrafficsim.model.lights.Lights;
+import com.codecool.pionierzy.citytrafficsim.model.lights.LightsStatus;
 import com.codecool.pionierzy.citytrafficsim.view.city.NetworkDisplay;
 import com.codecool.pionierzy.citytrafficsim.view.city.NetworkNodeDisplay;
 import javafx.stage.Stage;
@@ -61,8 +63,12 @@ public class MainController {
         VehicleGenerator generator = new VehicleGenerator(simLoop);
         generator.addToStartEdges(roads.get(roads.size()-1)); //simple one edge
 
-
         new Thread(generator).start();
+
+        Lights lTest = new Lights(node1, 10, LightsStatus.RED);
+        LightsController lc = new LightsController();
+        lc.getLightsArrayList().add(lTest);
+        new Thread(lc).start();
 
 
     }
