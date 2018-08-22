@@ -6,7 +6,7 @@ import javafx.application.Platform;
 
 import java.util.ArrayList;
 
-public class VehicleGenerator implements Runnable{
+public class VehicleGenerator implements Runnable {
     private final int CAR_INTENSITY = 5;
     private final int TRUCK_INTENSITY = 2;
     private final int MOTORCYCLE_INTENSITY = 2;
@@ -45,7 +45,7 @@ public class VehicleGenerator implements Runnable{
         this.startEdges.add(startEdge);
     }
 
-    public void generateOneCar(Edge startEdge){
+    public void generateOneCar(Edge startEdge) {
         Car car = new Car(startEdge);
         simLoop.addToVehicleList(car);
         startEdge.addVehicle(car);

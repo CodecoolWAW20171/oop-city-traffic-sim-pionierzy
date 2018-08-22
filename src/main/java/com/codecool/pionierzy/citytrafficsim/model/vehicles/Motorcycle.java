@@ -13,13 +13,4 @@ public class Motorcycle extends Vehicle {
         currentRoad = road;
         destination = road.getEnding();
     }
-
-    public void accelerate() {
-        speed += acceleration;
-    }
-
-    public void decelerate() {
-        speed -= acceleration;
-    }
-
 }

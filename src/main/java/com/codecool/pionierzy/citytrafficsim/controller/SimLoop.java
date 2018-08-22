@@ -20,8 +20,8 @@ public class SimLoop extends AnimationTimer {
 
     @Override
     public void handle(long now) {
-        for (Iterator<Vehicle> iterator = vehicleList.iterator(); iterator.hasNext();) {
-                Vehicle v = iterator.next();
+        for (Iterator<Vehicle> iterator = vehicleList.iterator(); iterator.hasNext(); ) {
+            Vehicle v = iterator.next();
 
             v.move();
             currentLane = networkDisplay.getVehicleLane(v);
@@ -29,7 +29,7 @@ public class SimLoop extends AnimationTimer {
             if (v.getDistanceTravelled() >= v.getCurrentRoad().getLength()) {
 
                 currentLane.deleteCarView(v);
-                if (v.getDestination().getNeighbours().size() == 1){
+                if (v.getDestination().getNeighbours().size() == 1) {
                     iterator.remove();
                     continue;
                 }
@@ -39,8 +39,8 @@ public class SimLoop extends AnimationTimer {
         }
     }
 
-    public void addVehicleToLane(Vehicle v){
-            networkDisplay.getVehicleLane(v).displayVehicle(v);
+    public void addVehicleToLane(Vehicle v) {
+        networkDisplay.getVehicleLane(v).displayVehicle(v);
     }
 
     public synchronized LinkedList<Vehicle> getVehicleList() {
