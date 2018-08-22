@@ -86,7 +86,7 @@ public class NetworkController {
             double length = Math.sqrt(Math.pow(from.getX() - to.getX(), 2) +
                     Math.pow(from.getY() - to.getY(), 2));
 
-            network.addEdge(new Edge(v, w, length));
+            network.addEdge(new Edge(from, to, length));
         }
 
     }

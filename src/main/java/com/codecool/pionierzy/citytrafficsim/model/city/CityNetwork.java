@@ -3,9 +3,9 @@ package com.codecool.pionierzy.citytrafficsim.model.city;
 import java.util.*;
 
 public class CityNetwork {
-    private final int V;
-    private int E;
-    private List<List<Edge>> adj;
+    private final int V;    // number of vertices
+    private int E;          // number of edges
+    private List<List<Edge>> adj;   // adjacency list
     private Vertex[] vertices;
 
     public CityNetwork(int V) {
@@ -27,7 +27,7 @@ public class CityNetwork {
     }
 
     public void addEdge(Edge e) {
-        adj.get(e.from()).add(e);
+        adj.get(e.from().v()).add(e);
         E++;
     }
 
@@ -48,7 +48,7 @@ public class CityNetwork {
     }
 
     public void addVertex(Vertex vertex) {
-        int v = vertex.getV();
+        int v = vertex.v();
         vertices[v] = vertex;
     }
 
@@ -59,7 +59,7 @@ public class CityNetwork {
         for (int v = 0; v < V; v++) {
             sb.append(v).append(": ");
             for (Edge e : adj.get(v)) {
-                sb.append(String.format("%d (%.2f), ", e.to(), e.getLength()));
+                sb.append(String.format("%d (%.2f), ", e.to().v(), e.getLength()));
             }
             sb.append("\n");
         }

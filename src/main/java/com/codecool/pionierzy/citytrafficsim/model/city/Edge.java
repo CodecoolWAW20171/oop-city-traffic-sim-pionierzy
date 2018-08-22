@@ -1,30 +1,28 @@
 package com.codecool.pionierzy.citytrafficsim.model.city;
 
 import com.codecool.pionierzy.citytrafficsim.model.vehicles.Vehicle;
-import com.codecool.pionierzy.citytrafficsim.view.city.Lane;
-import javafx.scene.layout.Pane;
 
 import java.util.List;
 
 public class Edge {
-    private final int v;
-    private final int w;
+    private final Vertex start;
+    private final Vertex end;
     private final double length;
 
     private List<Vehicle> vehicles;
 
-    public Edge(int v, int w, double length) {
-        this.v = v;
-        this.w = w;
+    public Edge(Vertex start, Vertex end, double length) {
+        this.start = start;
+        this.end = end;
         this.length = length;
     }
 
-    public int from() {
-        return v;
+    public Vertex from() {
+        return start;
     }
 
-    public int to() {
-        return w;
+    public Vertex to() {
+        return end;
     }
 
     public double getLength() {
@@ -33,7 +31,7 @@ public class Edge {
 
     @Override
     public String toString() {
-        return String.format("%d->%d %.2f", v, w, length);
+        return String.format("%d->%d %.2f", start.v(), end.v(), length);
     }
 
     // Handle vehicles

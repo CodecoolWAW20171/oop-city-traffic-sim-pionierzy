@@ -2,8 +2,8 @@ package com.codecool.pionierzy.citytrafficsim.model.city;
 
 public class Vertex {
     private final int v;
-    private double x;
-    private double y;
+    private final double x;
+    private final double y;
 
     public Vertex(int v, double x, double y) {
         this.v = v;
@@ -11,7 +11,7 @@ public class Vertex {
         this.y = y;
     }
 
-    public int getV() {
+    public int v() {
         return v;
     }
 

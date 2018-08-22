@@ -27,11 +27,15 @@ public class NetworkDisplay extends Pane {
         int V = network.getV();
         for (int v = 0; v < V; v++) {
             Vertex vertex = network.getVertex(v);
-            nodes[v] = new NodeDisplay(vertex);
-            this.getChildren().add(nodes[v]);
+            NodeDisplay node = new NodeDisplay(vertex);
+            nodes[v] = node;
+            this.getChildren().add(node);
         }
         Iterable<Edge> edges = network.getAllEdges();
-        for (Edge e : edges) {
+        for (Edge edge : edges) {
+            Lane lane = new Lane(edge);
+            lanes.add(lane);
+            this.getChildren().add(lane);
         }
     }
 }
