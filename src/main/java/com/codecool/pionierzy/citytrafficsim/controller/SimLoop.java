@@ -20,12 +20,17 @@ public class SimLoop extends AnimationTimer {
     @Override
     public void handle(long now) {
         for (Vehicle v : vehicleList) {
-            if (v.getDestination().getNeighbours().size() == 1) removeVehicleFromList(v);
+
             v.move();
             currentLane = networkDisplay.getVehicleLane(v);
             currentLane.moveVehicle(v);//test
             if (v.getDistanceTravelled() >= v.getCurrentRoad().getLength()) {
+
                 currentLane.deleteCarView(v);
+                if (v.getDestination().getNeighbours().size() == 1){
+                    removeVehicleFromList(v);
+                    continue;
+                }
                 v.setRndDirection();
                 networkDisplay.getVehicleLane(v).displayVehicle(v);
             }
