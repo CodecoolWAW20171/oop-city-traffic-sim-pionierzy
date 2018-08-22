@@ -10,7 +10,7 @@ public class Motorcycle extends Vehicle {
         acceleration = MOTORCYCLE_ACCELERATION;
         deceleration = MOTORCYCLE_DECELERATION;
         currentRoad = road;
-        destination = road.getEnding();
+//        destination = road.getEnding();
     }
 
     public void accelerate() {speed += acceleration;}

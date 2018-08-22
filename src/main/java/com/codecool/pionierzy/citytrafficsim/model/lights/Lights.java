@@ -1,8 +1,8 @@
 package com.codecool.pionierzy.citytrafficsim.model.lights;
 
-import com.codecool.pionierzy.citytrafficsim.model.city.NetworkNode;
+import com.codecool.pionierzy.citytrafficsim.model.city.Vertex;
 
 public class Lights {
-    private NetworkNode location;
+    private Vertex location;
     private int timeLeft;
 }

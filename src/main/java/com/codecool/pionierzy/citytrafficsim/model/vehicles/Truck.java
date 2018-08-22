@@ -11,7 +11,7 @@ public class Truck extends Vehicle {
         acceleration = TRUCK_ACCELERATION;
         deceleration = TRUCK_DECELERATION;
         currentRoad = road;
-        destination = road.getEnding();
+//        destination = road.getEnding();
     }
 
     public void accelerate() {speed += acceleration;}

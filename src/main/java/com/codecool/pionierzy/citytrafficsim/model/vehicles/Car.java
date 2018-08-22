@@ -10,7 +10,7 @@ public class Car extends Vehicle {
         acceleration = CAR_ACCELERATION;
         deceleration = CAR_DECELERATION;
         currentRoad = road;
-        destination = road.getEnding();
+//        destination = road.getEnding();
     }
     //constructor for testing only:
     public Car(){

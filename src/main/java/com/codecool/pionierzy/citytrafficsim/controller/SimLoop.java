@@ -12,8 +12,8 @@ public class SimLoop extends AnimationTimer {
     @Override
     public void handle(long now) {
         for (Vehicle v : vehicleList){
-            v.move();
-            v.getCurrentRoad().getLane().dispalayVehicle(v);//test
+//            v.move();
+//            v.getCurrentRoad().getLane().dispalayVehicle(v);//test
         }
     }
 
