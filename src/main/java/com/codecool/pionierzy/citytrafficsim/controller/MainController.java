@@ -48,8 +48,7 @@ public class MainController {
         generator.addToStartEdges(roads.get(3)); //simple one edge
 
 
-//        new Thread(generator).start();
-        generator.generateOneCar(roads.get(3));
+        new Thread(generator).start();
 
     }
 }
