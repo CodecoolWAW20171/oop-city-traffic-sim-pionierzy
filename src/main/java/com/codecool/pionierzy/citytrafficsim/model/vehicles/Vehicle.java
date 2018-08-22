@@ -25,11 +25,22 @@ public abstract class Vehicle {
         List<Vehicle> vehicleList = currentRoad.getVehicles();
         if (distanceTravelled + 240 * speed >= currentRoad.getLength() && speed > acceleration * 180) {
             slowDown(0.7);
+            canSpeedUp = false;
         }
-        else if (!vehicleList.isEmpty()) {
+        if (!vehicleList.isEmpty()) {
             for (Vehicle vehicle : vehicleList) {
                 if (this.distanceTravelled < vehicle.distanceTravelled && this.distanceTravelled + 120 * speed >= vehicle.distanceTravelled) {
-                    slowDown(0.4);
+                    if (vehicle.getSpeed() > this.speed) {
+                        break;
+                    }
+                    if (vehicle.getSpeed() < this.speed) {
+                        if (canSpeedUp == false) {
+                            slowDown(0.3); // if slowed down already, can't slow down with more than 100% breaking power;
+                        }
+                        else {
+                            slowDown(0.8);
+                        }
+                    }
                     canSpeedUp = false;
                     break;
                 }
@@ -91,5 +102,9 @@ public abstract class Vehicle {
 
     public void setCarView(Rectangle carView) {
         this.carView = carView;
+    }
+
+    public double getSpeed() {
+        return this.speed;
     }
 }
