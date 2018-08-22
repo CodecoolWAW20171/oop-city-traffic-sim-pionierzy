@@ -29,12 +29,12 @@ public abstract class Vehicle {
         }
         if (!vehicleList.isEmpty()) {
             for (Vehicle vehicle : vehicleList) {
-                if (!vehicle.equals(this) && this.distanceTravelled <= vehicle.distanceTravelled && this.distanceTravelled + 120 * this.speed >= vehicle.distanceTravelled) {
+                if (!vehicle.equals(this) && this.distanceTravelled < vehicle.distanceTravelled && this.distanceTravelled + 150 * this.speed >= vehicle.distanceTravelled) {
                     if (vehicle.getSpeed() > this.speed) {
-                        slowDown(0.2);
+                        slowDown(0.5);
                     }
                     if (vehicle.getSpeed() < this.speed) {
-                        if (canSpeedUp == false) {
+                        if (!canSpeedUp) {
                             slowDown(0.3); // if slowed down already, can't slow down with more than 100% breaking power;
                         }
                         else {
