@@ -2,11 +2,8 @@ package com.codecool.pionierzy.citytrafficsim.controller;
 
 import com.codecool.pionierzy.citytrafficsim.model.city.Edge;
 import com.codecool.pionierzy.citytrafficsim.model.city.NetworkNode;
-import com.codecool.pionierzy.citytrafficsim.model.vehicles.Vehicle;
-import com.codecool.pionierzy.citytrafficsim.view.city.Lane;
 import com.codecool.pionierzy.citytrafficsim.view.city.NetworkDisplay;
 import com.codecool.pionierzy.citytrafficsim.view.city.NetworkNodeDisplay;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -41,7 +38,7 @@ public class MainController {
         roads.add(node4.addNeighbour(node3));
 
         for (Edge road : this.roads) {
-            networkDisplay.createVisualDisplay(road);
+            networkDisplay.createLaneView(road);
         }
 
 

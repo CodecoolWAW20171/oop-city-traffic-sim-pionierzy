@@ -55,8 +55,7 @@ public abstract class Vehicle {
         ArrayList<NetworkNode> neighbours = node.getNeighbours();
         int size = neighbours.size();
         int index;
-
-        do {
+        do{
             index = new Random().nextInt(size);
         }while (neighbours.get(index).equals(currentRoad.getBeginning()));
         HashMap roads = node.getRoads();
