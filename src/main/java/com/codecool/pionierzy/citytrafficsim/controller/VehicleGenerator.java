@@ -45,4 +45,11 @@ public class VehicleGenerator implements Runnable{
     public void addToStartEdges(Edge startEdge) {
         this.startEdges.add(startEdge);
     }
+
+    public void generateOneCar(Edge startEdge){
+        Car car = new Car(startEdge);
+        simLoop.addToVehicleList(car);
+        startEdge.addVehicle(car);
+        simLoop.addVehicleToLane(car);
+    }
 }

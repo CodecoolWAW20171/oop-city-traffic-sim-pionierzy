@@ -51,6 +51,8 @@ public class MainController {
         generator.addToStartEdges(roads.get(3)); //simple one edge
 
 
-        new Thread(generator).start();
+//        new Thread(generator).start();
+        new Thread(generator).start();  //testing purposes
+
     }
 }
