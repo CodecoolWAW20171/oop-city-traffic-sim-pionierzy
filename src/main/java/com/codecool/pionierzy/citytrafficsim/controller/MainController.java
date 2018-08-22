@@ -2,11 +2,8 @@ package com.codecool.pionierzy.citytrafficsim.controller;
 
 import com.codecool.pionierzy.citytrafficsim.model.city.Edge;
 import com.codecool.pionierzy.citytrafficsim.model.city.NetworkNode;
-import com.codecool.pionierzy.citytrafficsim.model.vehicles.Vehicle;
-import com.codecool.pionierzy.citytrafficsim.view.city.Lane;
 import com.codecool.pionierzy.citytrafficsim.view.city.NetworkDisplay;
 import com.codecool.pionierzy.citytrafficsim.view.city.NetworkNodeDisplay;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -25,10 +22,10 @@ public class MainController {
         NetworkNode node2 = new NetworkNode(150, 500);
         NetworkNode node3 = new NetworkNode(500, 500);
         NetworkNode node4 = new NetworkNode(500, 150);
-        NetworkNodeDisplay node1Display = new NetworkNodeDisplay(node1,networkDisplay);
-        NetworkNodeDisplay node2Display = new NetworkNodeDisplay(node2,networkDisplay);
-        NetworkNodeDisplay node3Display = new NetworkNodeDisplay(node3,networkDisplay);
-        NetworkNodeDisplay node4Display = new NetworkNodeDisplay(node4,networkDisplay);
+        NetworkNodeDisplay node1Display = new NetworkNodeDisplay(node1, networkDisplay);
+        NetworkNodeDisplay node2Display = new NetworkNodeDisplay(node2, networkDisplay);
+        NetworkNodeDisplay node3Display = new NetworkNodeDisplay(node3, networkDisplay);
+        NetworkNodeDisplay node4Display = new NetworkNodeDisplay(node4, networkDisplay);
 
 
         roads.add(node1.addNeighbour(node2));

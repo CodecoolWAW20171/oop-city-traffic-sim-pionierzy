@@ -2,7 +2,6 @@ package com.codecool.pionierzy.citytrafficsim.controller;
 
 import com.codecool.pionierzy.citytrafficsim.model.city.Edge;
 import com.codecool.pionierzy.citytrafficsim.model.vehicles.Car;
-import com.codecool.pionierzy.citytrafficsim.model.vehicles.Vehicle;
 import javafx.application.Platform;
 
 import java.util.ArrayList;
