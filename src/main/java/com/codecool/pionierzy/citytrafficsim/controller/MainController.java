@@ -41,7 +41,6 @@ public class MainController {
         roads.add(node2.addNeighbour(node1));
         roads.add(node2.addNeighbour(node3));
         roads.add(node2.addNeighbour(startNode));
-
         roads.add(node3.addNeighbour(node4));
         roads.add(node3.addNeighbour(node2));
         roads.add(node5.addNeighbour(node1));
@@ -49,7 +48,7 @@ public class MainController {
         roads.add(node4.addNeighbour(node5));
         roads.add(node5.addNeighbour(node4));
 
-        roads.add(startNode.addNeighbour(node2));
+        roads.add(startNode.addNeighbour(node2));// leave it as a last road!
 
 
         for (Edge road : this.roads) {
