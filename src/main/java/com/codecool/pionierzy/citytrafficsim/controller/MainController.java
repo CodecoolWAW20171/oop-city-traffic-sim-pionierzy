@@ -18,24 +18,38 @@ public class MainController {
 
     public void startNewSimulation(NetworkDisplay networkDisplay) {
         // this is here for tests, when network controller is done this will be obsolete
-        NetworkNode node1 = new NetworkNode(150, 150);
-        NetworkNode node2 = new NetworkNode(150, 500);
-        NetworkNode node3 = new NetworkNode(500, 500);
-        NetworkNode node4 = new NetworkNode(500, 150);
-        NetworkNodeDisplay node1Display = new NetworkNodeDisplay(node1, networkDisplay);
-        NetworkNodeDisplay node2Display = new NetworkNodeDisplay(node2, networkDisplay);
-        NetworkNodeDisplay node3Display = new NetworkNodeDisplay(node3, networkDisplay);
-        NetworkNodeDisplay node4Display = new NetworkNodeDisplay(node4, networkDisplay);
+        NetworkNode node1 = new NetworkNode(350, 150);
+        NetworkNode node2 = new NetworkNode(350, 325);
+        NetworkNode node3 = new NetworkNode(350, 500);
+        NetworkNode node4 = new NetworkNode(700, 500);
+        NetworkNode node5 = new NetworkNode(700, 150);
+        NetworkNode startNode = new NetworkNode(100, 325);
+
+
+        NetworkNodeDisplay node1Display = new NetworkNodeDisplay(node1,networkDisplay);
+        NetworkNodeDisplay node2Display = new NetworkNodeDisplay(node2,networkDisplay);
+        NetworkNodeDisplay node3Display = new NetworkNodeDisplay(node3,networkDisplay);
+        NetworkNodeDisplay node4Display = new NetworkNodeDisplay(node4,networkDisplay);
+        NetworkNodeDisplay node5Display = new NetworkNodeDisplay(node5,networkDisplay);
+        NetworkNodeDisplay startNodeDisplay = new NetworkNodeDisplay(startNode,networkDisplay);
+
+
 
 
         roads.add(node1.addNeighbour(node2));
-        roads.add(node1.addNeighbour(node4));
+        roads.add(node1.addNeighbour(node5));
         roads.add(node2.addNeighbour(node1));
         roads.add(node2.addNeighbour(node3));
+        roads.add(node2.addNeighbour(startNode));
         roads.add(node3.addNeighbour(node4));
         roads.add(node3.addNeighbour(node2));
-        roads.add(node4.addNeighbour(node1));
+        roads.add(node5.addNeighbour(node1));
         roads.add(node4.addNeighbour(node3));
+        roads.add(node4.addNeighbour(node5));
+        roads.add(node5.addNeighbour(node4));
+
+        roads.add(startNode.addNeighbour(node2));// leave it as a last road!
+
 
         for (Edge road : this.roads) {
             networkDisplay.createLaneView(road);
@@ -45,10 +59,11 @@ public class MainController {
         SimLoop simLoop = new SimLoop(networkDisplay);
         simLoop.start();
         VehicleGenerator generator = new VehicleGenerator(simLoop);
-        generator.addToStartEdges(roads.get(3)); //simple one edge
+        generator.addToStartEdges(roads.get(roads.size()-1)); //simple one edge
 
 
         new Thread(generator).start();
+
 
     }
 }
