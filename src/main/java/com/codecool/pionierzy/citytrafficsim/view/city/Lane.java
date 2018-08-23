@@ -11,13 +11,13 @@ import javafx.scene.transform.Rotate;
 
 public class Lane extends AnchorPane {
 
-    private static final int width = 60;
+    private static final int width = 10;
     private static final Color color = Color.GRAY;
     private double height;
     private double angle;
     private Edge modelEdge;
-    private final int CARWIDTH = 6;
-    private final int CARHEIGHT = 20;
+    private final int CARWIDTH = 4;
+    private final int CARHEIGHT = 10;
 
 
     public Lane(Edge edge, Pane pane, boolean AZ, boolean oneLaneOnly) {
