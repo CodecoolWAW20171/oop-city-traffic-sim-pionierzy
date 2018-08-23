@@ -3,8 +3,8 @@ package com.codecool.pionierzy.citytrafficsim.model.vehicles;
 import com.codecool.pionierzy.citytrafficsim.model.city.Edge;
 
 public class Truck extends Vehicle {
-    public static final double TRUCK_ACCELERATION = 0.001;
-    public static final double TRUCK_DECELERATION = 0.010;
+    private static final double TRUCK_ACCELERATION = 0.001;
+    private static final double TRUCK_DECELERATION = 0.009;
 
     public Truck(Edge road) {
         MAXSPEED = 0.8;

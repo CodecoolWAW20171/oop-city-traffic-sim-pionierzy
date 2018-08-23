@@ -39,7 +39,7 @@ public class SimLoop extends AnimationTimer {
             }
         }
         vehicleList.addAll(vehiclesToAdd);
-        for (Vehicle vehicle: vehiclesToRemove) {
+        for (Vehicle vehicle : vehiclesToRemove) {
             vehicleList.remove(vehicle);
         }
         vehiclesToAdd.clear();

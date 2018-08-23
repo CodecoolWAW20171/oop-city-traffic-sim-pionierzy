@@ -15,7 +15,7 @@ public class Lights {
     public Lights(Edge road, int timeLeft) {
         this.road = road;
         this.timeLeft = timeLeft;
-        this.distanceLocation = road.getLength()*0.65;
+        this.distanceLocation = road.getLength() * 0.65;
     }
 
     public Lights(Edge road, int timeLeft, double distanceLocation) {
@@ -40,8 +40,8 @@ public class Lights {
         this.lightsStatus = lightsStatus;
     }
 
-    public void controlLightsStatus(){
-        switch (timeLeft){
+    public void controlLightsStatus() {
+        switch (timeLeft) {
             case 0:
                 this.timeLeft = 10;
             case CYCLETIME:

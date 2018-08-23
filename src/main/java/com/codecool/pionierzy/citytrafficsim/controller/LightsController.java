@@ -23,15 +23,15 @@ public class LightsController implements Runnable {
 
     @Override
     public void run() {
-        for (Lights lights : lightsArrayList){
+        for (Lights lights : lightsArrayList) {
             lights.controlLightsStatus();
             lightsLightsDisplayHashMap.get(lights).setLightsColor();
-            lights.setTimeLeft(lights.getTimeLeft()-1);
+            lights.setTimeLeft(lights.getTimeLeft() - 1);
         }
     }
 
-    public void prepareLightsView(){ // do this before simulating
-        for (Lights lights : lightsArrayList){
+    public void prepareLightsView() { // do this before simulating
+        for (Lights lights : lightsArrayList) {
             LightsDisplay lightsDisplay = new LightsDisplay(lights, Lane.width,
                     5);
             networkDisplay.getLane(lights.getRoad()).setLights(lightsDisplay);

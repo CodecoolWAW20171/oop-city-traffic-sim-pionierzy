@@ -11,7 +11,7 @@ import java.util.Random;
 
 public abstract class Vehicle {
 
-    double speed = 0;
+    private double speed = 0;
     double acceleration;
     double deceleration;
     Edge currentRoad;
@@ -42,8 +42,7 @@ public abstract class Vehicle {
                     } else {
                         if (this.distanceTravelled + 30 * speed >= vehicle.getDistanceTravelled()) {
                             slowDown(0.8);
-                        }
-                        else if (this.distanceTravelled + 60 * speed >= vehicle.getDistanceTravelled()) {
+                        } else if (this.distanceTravelled + 60 * speed >= vehicle.getDistanceTravelled()) {
                             slowDown(0.4);
                         }
                     }
@@ -57,8 +56,7 @@ public abstract class Vehicle {
                 slowDown(0.2);
                 canSpeedUp = false;
             }
-        }
-        else if (distanceTravelled + 300 * speed >= currentRoad.getLength() && canSpeedUp) {
+        } else if (distanceTravelled + 300 * speed >= currentRoad.getLength() && canSpeedUp) {
             if (speed > acceleration * 300) {
                 slowDown(0.05);
                 canSpeedUp = false;

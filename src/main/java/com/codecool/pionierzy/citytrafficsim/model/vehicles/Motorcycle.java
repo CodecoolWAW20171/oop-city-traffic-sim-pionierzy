@@ -3,8 +3,8 @@ package com.codecool.pionierzy.citytrafficsim.model.vehicles;
 import com.codecool.pionierzy.citytrafficsim.model.city.Edge;
 
 public class Motorcycle extends Vehicle {
-    public static final double MOTORCYCLE_ACCELERATION = 0.006;
-    public static final double MOTORCYCLE_DECELERATION = 0.016;
+    private static final double MOTORCYCLE_ACCELERATION = 0.003;
+    private static final double MOTORCYCLE_DECELERATION = 0.018;
 
     public Motorcycle(Edge road) {
         MAXSPEED = 1.6;

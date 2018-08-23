@@ -30,29 +30,26 @@ public class VehicleGenerator implements Runnable {
 
     @Override
     public void run() {
-            for (Edge startEdge : startEdges) {
-                randint = random.nextInt(CAR_INTENSITY + TRUCK_INTENSITY + MOTORCYCLE_INTENSITY);
+        for (Edge startEdge : startEdges) {
+            randint = random.nextInt(CAR_INTENSITY + TRUCK_INTENSITY + MOTORCYCLE_INTENSITY);
 
-                if (randint < CAR_INTENSITY) {
-                    Car v = new Car(startEdge);
-                    createVehicle(v, startEdge);
-                }
-                else if (randint < CAR_INTENSITY + TRUCK_INTENSITY){
-                    Truck v = new Truck(startEdge);
-                    createVehicle(v, startEdge);
-                }
-                else if (randint < CAR_INTENSITY + TRUCK_INTENSITY + MOTORCYCLE_INTENSITY){
-                    Motorcycle v = new Motorcycle(startEdge);
-                    createVehicle(v, startEdge);
-                }
-                else {
-                    Car v = new Car(startEdge);
-                    createVehicle(v, startEdge);
-                }
+            if (randint < CAR_INTENSITY) {
+                Car v = new Car(startEdge);
+                createVehicle(v, startEdge);
+            } else if (randint < CAR_INTENSITY + TRUCK_INTENSITY) {
+                Truck v = new Truck(startEdge);
+                createVehicle(v, startEdge);
+            } else if (randint < CAR_INTENSITY + TRUCK_INTENSITY + MOTORCYCLE_INTENSITY) {
+                Motorcycle v = new Motorcycle(startEdge);
+                createVehicle(v, startEdge);
+            } else {
+                Car v = new Car(startEdge);
+                createVehicle(v, startEdge);
             }
+        }
     }
 
-    private void createVehicle(Vehicle v, Edge startEdge){
+    private void createVehicle(Vehicle v, Edge startEdge) {
         simLoop.addToVehicleList(v);
         startEdge.addVehicle(v);
         Platform.runLater(
