@@ -26,7 +26,7 @@ public abstract class Vehicle {
         List<Vehicle> vehicleList = currentRoad.getVehicles();
         if (!vehicleList.isEmpty()) {
             for (Vehicle vehicle : vehicleList) {
-                if (!vehicle.equals(this)) continue;
+                if (vehicle.equals(this)) continue;
                 if (this.distanceTravelled < vehicle.distanceTravelled && this.distanceTravelled + 45 * speed > vehicle.distanceTravelled) {
                     slowDown(1.0);
                     canSpeedUp = false;
@@ -34,10 +34,14 @@ public abstract class Vehicle {
                 }
                 if (this.distanceTravelled < vehicle.distanceTravelled && this.distanceTravelled + 180 * this.speed >= vehicle.distanceTravelled) {
                     if (vehicle.getSpeed() <= this.speed) {
-                        slowDown(0.8);
+                        if (this.distanceTravelled + 60 * speed >= vehicle.getDistanceTravelled()) {
+                            slowDown(1.0);
+                        } else {
+                            slowDown(0.6);
+                        }
                     } else {
                         if (this.distanceTravelled + 60 * speed >= vehicle.getDistanceTravelled()) {
-                            slowDown(0.6);
+                            slowDown(0.7);
                         } else {
                             slowDown(0.3);
                         }
@@ -47,12 +51,12 @@ public abstract class Vehicle {
                 }
             }
         }
-        if (distanceTravelled + 120 * speed >= currentRoad.getLength() && speed > acceleration * 150 && canSpeedUp) {
-            slowDown(0.15);
+        if (distanceTravelled + 90 * speed >= currentRoad.getLength() && speed > acceleration * 180 && canSpeedUp) {
+            slowDown(0.2);
             canSpeedUp = false;
         }
         else if (distanceTravelled + 300 * speed >= currentRoad.getLength() && speed > acceleration * 240 && canSpeedUp) {
-            slowDown(0.05);
+            slowDown(0.03);
             canSpeedUp = false;
         }
 
