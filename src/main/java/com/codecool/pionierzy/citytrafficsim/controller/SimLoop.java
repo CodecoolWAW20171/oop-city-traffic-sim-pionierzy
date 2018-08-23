@@ -11,6 +11,8 @@ import java.util.LinkedList;
 public class SimLoop extends AnimationTimer {
 
     private LinkedList<Vehicle> vehicleList = new LinkedList<>();
+    private LinkedList<Vehicle> vehiclesToAdd = new LinkedList<>();
+    private LinkedList<Vehicle> vehiclesToRemove = new LinkedList<>();
     private NetworkDisplay networkDisplay;
 
     public SimLoop(NetworkDisplay networkDisplay) {
@@ -36,6 +38,12 @@ public class SimLoop extends AnimationTimer {
                 networkDisplay.getVehicleLane(v).displayVehicle(v);
             }
         }
+        vehicleList.addAll(vehiclesToAdd);
+        for (Vehicle vehicle: vehiclesToRemove) {
+            vehicleList.remove(vehicle);
+        }
+        vehiclesToAdd.clear();
+        vehiclesToRemove.clear();
     }
 
     public synchronized void addVehicleToLane(Vehicle v) {
@@ -47,11 +55,11 @@ public class SimLoop extends AnimationTimer {
     }
 
     public synchronized void addToVehicleList(Vehicle vehicleToAdd) {
-        this.vehicleList.add(vehicleToAdd);
+        this.vehiclesToAdd.add(vehicleToAdd);
     }
 
     public synchronized void removeVehicleFromList(Vehicle vehicle) {
-        this.vehicleList.remove(vehicle);
+        this.vehiclesToRemove.add(vehicle);
     }
 
 }

@@ -27,6 +27,11 @@ public abstract class Vehicle {
         if (!vehicleList.isEmpty()) {
             for (Vehicle vehicle : vehicleList) {
                 if (!vehicle.equals(this)) continue;
+                if (this.distanceTravelled < vehicle.distanceTravelled && this.distanceTravelled + 45 * speed > vehicle.distanceTravelled) {
+                    slowDown(1.0);
+                    canSpeedUp = false;
+                    break;
+                }
                 if (this.distanceTravelled < vehicle.distanceTravelled && this.distanceTravelled + 180 * this.speed >= vehicle.distanceTravelled) {
                     if (vehicle.getSpeed() <= this.speed) {
                         slowDown(0.8);
@@ -42,10 +47,15 @@ public abstract class Vehicle {
                 }
             }
         }
-        if (distanceTravelled + 240 * speed >= currentRoad.getLength() && speed > acceleration * 240 && canSpeedUp) {
+        if (distanceTravelled + 120 * speed >= currentRoad.getLength() && speed > acceleration * 150 && canSpeedUp) {
+            slowDown(0.15);
+            canSpeedUp = false;
+        }
+        else if (distanceTravelled + 300 * speed >= currentRoad.getLength() && speed > acceleration * 240 && canSpeedUp) {
             slowDown(0.05);
             canSpeedUp = false;
         }
+
         if (canSpeedUp) {
             if (speed < MAXSPEED - acceleration) {
                 speed += acceleration;
