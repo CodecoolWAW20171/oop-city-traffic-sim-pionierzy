@@ -7,7 +7,7 @@ public class Truck extends Vehicle {
     public static final double TRUCK_DECELERATION = 0.010;
 
     public Truck(Edge road) {
-        MAXSPEED = 1.0;
+        MAXSPEED = 0.8;
         acceleration = TRUCK_ACCELERATION;
         deceleration = TRUCK_DECELERATION;
         currentRoad = road;
