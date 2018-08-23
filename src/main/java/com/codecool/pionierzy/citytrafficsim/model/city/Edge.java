@@ -24,7 +24,7 @@ public class Edge implements Comparable {
         vehicles.add(vehicle);
     }
 
-    public void removeVehicle(Vehicle vehicle) {
+    public synchronized void removeVehicle(Vehicle vehicle) {
         vehicles.remove(vehicle);
     }
 

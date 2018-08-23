@@ -11,8 +11,7 @@ import java.util.LinkedList;
 public class SimLoop extends AnimationTimer {
 
     private LinkedList<Vehicle> vehicleList = new LinkedList<>();
-    NetworkDisplay networkDisplay;
-    private Lane currentLane;
+    private NetworkDisplay networkDisplay;
 
     public SimLoop(NetworkDisplay networkDisplay) {
         this.networkDisplay = networkDisplay;
@@ -23,8 +22,8 @@ public class SimLoop extends AnimationTimer {
         for (Iterator<Vehicle> iterator = vehicleList.iterator(); iterator.hasNext(); ) {
             Vehicle v = iterator.next();
             v.move();
-            currentLane = networkDisplay.getVehicleLane(v);
-            currentLane.moveVehicle(v);//test
+            Lane currentLane = networkDisplay.getVehicleLane(v);
+            currentLane.moveVehicle(v);
             if (v.getDistanceTravelled() >= v.getCurrentRoad().getLength()) {
 
                 currentLane.deleteCarView(v);
@@ -38,7 +37,7 @@ public class SimLoop extends AnimationTimer {
         }
     }
 
-    public void addVehicleToLane(Vehicle v) {
+    public synchronized void addVehicleToLane(Vehicle v) {
         networkDisplay.getVehicleLane(v).displayVehicle(v);
     }
 

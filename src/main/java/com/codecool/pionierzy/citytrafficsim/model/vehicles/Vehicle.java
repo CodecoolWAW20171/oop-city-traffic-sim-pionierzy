@@ -27,18 +27,25 @@ public abstract class Vehicle {
         if (!vehicleList.isEmpty()) {
             for (Vehicle vehicle : vehicleList) {
                 if (vehicle.equals(this)) continue;
-                if (this.distanceTravelled + 300 * speed >= currentRoad.getLength() && vehicle.getDistanceTravelled() > this.distanceTravelled) {
+                if (vehicle.distanceTravelled > this.distanceTravelled && this.distanceTravelled + 60 * speed > vehicle.distanceTravelled) {
                     slowDown(1.0);
                     canSpeedUp = false;
+                    break;
+                }
+                if (this.distanceTravelled + 300 * speed >= currentRoad.getLength() && vehicle.getDistanceTravelled() > this.distanceTravelled) {
+                    slowDown(0.5);
+                    canSpeedUp = false;
+                    break;
                 }
                 if (this.distanceTravelled < vehicle.distanceTravelled && this.distanceTravelled + 240 * this.speed >= vehicle.distanceTravelled) {
-                    slowDown(1.0);
+                    slowDown(0.7);
                     canSpeedUp = false;
+                    break;
                 }
             }
         }
         if (distanceTravelled + 300 * speed >= currentRoad.getLength() && speed > acceleration * 180 && canSpeedUp) {
-            slowDown(0.02);
+            slowDown(0.05);
             canSpeedUp = false;
         }
         if (canSpeedUp) {
@@ -77,6 +84,7 @@ public abstract class Vehicle {
         this.currentRoad.removeVehicle(this);
         this.distanceTravelled = 0;
         this.currentRoad = (Edge) roads.get(this.destination);
+        this.currentRoad.addVehicle(this);
     }
 
     public NetworkNode getDestination() {
