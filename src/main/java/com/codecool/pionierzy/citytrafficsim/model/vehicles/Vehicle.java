@@ -42,10 +42,15 @@ public abstract class Vehicle {
                 }
             }
         }
-        if (distanceTravelled + 300 * speed >= currentRoad.getLength() && speed > acceleration * 180 && canSpeedUp) {
+        if (distanceTravelled + 120 * speed >= currentRoad.getLength() && speed > acceleration * 150 && canSpeedUp) {
+            slowDown(0.15);
+            canSpeedUp = false;
+        }
+        else if (distanceTravelled + 300 * speed >= currentRoad.getLength() && speed > acceleration * 240 && canSpeedUp) {
             slowDown(0.05);
             canSpeedUp = false;
         }
+
         if (canSpeedUp) {
             if (speed < MAXSPEED - acceleration) {
                 speed += acceleration;
