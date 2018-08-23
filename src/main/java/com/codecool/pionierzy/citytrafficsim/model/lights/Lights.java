@@ -50,6 +50,7 @@ public class Lights {
                 if (timeLeft == 0){
                     this.lightsStatus = LightsStatus.RED;
                     System.out.println("red");
+                    timeLeft = phaseTime;
                 }
                 break;
             case RED:

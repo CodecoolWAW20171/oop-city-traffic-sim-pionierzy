@@ -9,6 +9,9 @@ import com.codecool.pionierzy.citytrafficsim.view.city.NetworkNodeDisplay;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class MainController {
     private Stage primaryStage;
@@ -68,7 +71,8 @@ public class MainController {
         Lights lTest = new Lights(node1, 10, LightsStatus.RED);
         LightsController lc = new LightsController();
         lc.getLightsArrayList().add(lTest);
-        new Thread(lc).start();
+
+        lc.startScheduledExecutorService();
 
 
     }
