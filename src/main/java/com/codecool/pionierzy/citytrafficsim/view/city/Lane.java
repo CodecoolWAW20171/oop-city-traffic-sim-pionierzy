@@ -11,7 +11,7 @@ import javafx.scene.transform.Rotate;
 
 public class Lane extends AnchorPane {
 
-    public static final int width = 60;
+    public static final int width = 10;
     private static final Color color = Color.GREY;
     private double height;
     private double angle;

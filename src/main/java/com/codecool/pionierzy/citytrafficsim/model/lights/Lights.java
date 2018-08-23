@@ -46,15 +46,12 @@ public class Lights {
                 this.timeLeft = 10;
             case CYCLETIME:
                 this.lightsStatus = LightsStatus.GREEN;
-                System.out.println(this + " green " + timeLeft);
                 break;
             case CYCLETIME - GREENDURATION:
                 this.lightsStatus = LightsStatus.YELLOW;
-                System.out.println(this + " yellow " + timeLeft);
                 break;
             case CYCLETIME - GREENDURATION - YELLOWDURATION:
                 this.lightsStatus = LightsStatus.RED;
-                System.out.println(this + " red " + timeLeft);
                 break;
         }
     }
