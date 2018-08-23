@@ -24,8 +24,8 @@ public abstract class Vehicle {
     public void move() {
         boolean canSpeedUp = true;
         List<Vehicle> vehicleList = currentRoad.getVehicles();
-        if (distanceTravelled + 300 * speed >= currentRoad.getLength() && speed > acceleration * 180) {
-            slowDown(0.2);
+        if (distanceTravelled + 240 * speed >= currentRoad.getLength() && speed > acceleration * 180) {
+            slowDown(0.1);
             canSpeedUp = false;
         }
         if (!vehicleList.isEmpty()) {
