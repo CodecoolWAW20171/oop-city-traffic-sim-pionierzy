@@ -23,6 +23,7 @@ public class MainController {
 
     public void startNewSimulation(NetworkDisplay networkDisplay) {
         // this is here for tests, when network controller is done this will be obsolete
+
         NetworkNode startNode = new NetworkNode(-50, 350);
 
         NetworkNode c1r1 = new NetworkNode(50, 50);
@@ -35,9 +36,7 @@ public class MainController {
         NetworkNode c3r2 = new NetworkNode(1050, 350);
         NetworkNode c3r3 = new NetworkNode(1050, 650);
 
-
         new NetworkNodeDisplay(startNode, networkDisplay);
-
         new NetworkNodeDisplay(c1r1, networkDisplay);
         new NetworkNodeDisplay(c1r2, networkDisplay);
         new NetworkNodeDisplay(c1r3, networkDisplay);
@@ -92,18 +91,24 @@ public class MainController {
 
 
         SimLoop simLoop = new SimLoop(networkDisplay);
-        simLoop.start();
         VehicleGenerator generator = new VehicleGenerator(simLoop);
         generator.addToStartEdges(roads.get(roads.size() - 1)); //simple one edge
+        Thread vehicleGenerator = new Thread(generator);
 
-        new Thread(generator).start();
+        Lights left = new Lights(roads.get(11), 5, 10);
+        Lights right = new Lights(roads.get(20), 5, 10);
+        Lights down = new Lights(roads.get(13), 10, 10);
+        Lights up = new Lights(roads.get(14), 10, 10);
 
-        Lights lTest = new Lights(c1r1, 10, LightsStatus.RED);
-        LightsController lc = new LightsController();
-        lc.getLightsArrayList().add(lTest);
+        LightsController lightsController = new LightsController(networkDisplay);
+        lightsController.getLightsArrayList().add(left);
+        lightsController.getLightsArrayList().add(right);
+        lightsController.getLightsArrayList().add(down);
+        lightsController.getLightsArrayList().add(up);
+        lightsController.prepareLightsView();
 
-        lc.startScheduledExecutorService();
-
-
+        simLoop.start();
+        vehicleGenerator.start();
+        lightsController.startScheduledExecutorService();
     }
 }
