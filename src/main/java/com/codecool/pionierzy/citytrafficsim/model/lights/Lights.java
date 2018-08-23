@@ -1,23 +1,27 @@
 package com.codecool.pionierzy.citytrafficsim.model.lights;
 
-import com.codecool.pionierzy.citytrafficsim.model.city.NetworkNode;
+import com.codecool.pionierzy.citytrafficsim.model.city.Edge;
 
 public class Lights {
-    private NetworkNode location;
-    private int phaseTime = 10;
+    private Edge road;
+    private double distanceLocation;
+    private final int CYCLETIME = 10;
     private int timeLeft;
     private LightsStatus lightsStatus;
     private final int YELLOWDURATION = 1;
-    private final int GREENDURATION = Math.round((phaseTime - YELLOWDURATION)/2);
+    private final int GREENDURATION = 4;
+    //private final int GREENDURATION = Math.round((CYCLETIME - YELLOWDURATION)/2);
 
-    public Lights(NetworkNode location) {
-        this.location = location;
-        this.timeLeft = 10;
-        lightsStatus = LightsStatus.RED;
+    public Lights(Edge road, int timeLeft, LightsStatus lightsStatus) {
+        this.road = road;
+        this.timeLeft = timeLeft;
+        this.lightsStatus = lightsStatus;
+         this.distanceLocation = road.getLength()*0.7;
     }
 
-    public Lights(NetworkNode location, int timeLeft, LightsStatus lightsStatus) {
-        this.location = location;
+    public Lights(Edge road, double distanceLocation, int timeLeft, LightsStatus lightsStatus) {
+        this.road = road;
+        this.distanceLocation = distanceLocation;
         this.timeLeft = timeLeft;
         this.lightsStatus = lightsStatus;
     }
@@ -39,26 +43,51 @@ public class Lights {
     }
 
     public void controlLightsStatus(){
-        switch (this.getLightsStatus()){
-            case GREEN:
-                if (timeLeft == YELLOWDURATION){
-                    this.lightsStatus = LightsStatus.YELLOW;
-                    System.out.println("yellow");
-                }
+        switch (timeLeft){
+            case 0:
+                this.timeLeft = 10;
+            case CYCLETIME:
+                this.lightsStatus = LightsStatus.GREEN;
+                System.out.println(this + " green " + timeLeft);
                 break;
-            case YELLOW:
-                if (timeLeft == 0){
-                    this.lightsStatus = LightsStatus.RED;
-                    System.out.println("red");
-                    timeLeft = phaseTime;
-                }
+            case CYCLETIME - GREENDURATION:
+                this.lightsStatus = LightsStatus.YELLOW;
+                System.out.println(this + " yellow " + timeLeft);
                 break;
-            case RED:
-                if (timeLeft == phaseTime - GREENDURATION){
-                    this.lightsStatus = LightsStatus.GREEN;
-                    System.out.println("green");
-                }
+            case CYCLETIME - GREENDURATION - YELLOWDURATION:
+                this.lightsStatus = LightsStatus.RED;
+                System.out.println(this + " red " + timeLeft);
                 break;
         }
+
+//        switch (this.getLightsStatus()){
+//            case GREEN:
+//                if (timeLeft == YELLOWDURATION){
+//                    this.lightsStatus = LightsStatus.YELLOW;
+//                    System.out.println(this + " yellow " + timeLeft);
+//                }
+//                break;
+//            case YELLOW:
+//                if (timeLeft == 0){
+//                    this.lightsStatus = LightsStatus.RED;
+//                    System.out.println(this + " red " + timeLeft);
+//                    timeLeft = CYCLETIME;
+//                }
+//                break;
+//            case RED:
+//                if (timeLeft == CYCLETIME - GREENDURATION){
+//                    this.lightsStatus = LightsStatus.GREEN;
+//                    System.out.println(this + " green " + timeLeft);
+//                }
+//                break;
+//        }
+    }
+
+    public Edge getRoad() {
+        return road;
+    }
+
+    public double getDistanceLocation() {
+        return distanceLocation;
     }
 }
