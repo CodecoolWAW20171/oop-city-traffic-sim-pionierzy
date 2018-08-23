@@ -9,6 +9,9 @@ import javafx.application.Platform;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class VehicleGenerator implements Runnable {
     private final int CAR_INTENSITY = 5;
@@ -77,5 +80,16 @@ public class VehicleGenerator implements Runnable {
         simLoop.addToVehicleList(car);
         startEdge.addVehicle(car);
         simLoop.addVehicleToLane(car);
+    }
+
+
+    public void startScheduledExecutorService() {
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+
+        scheduler.scheduleAtFixedRate(
+                () -> this.run(),
+                0,
+                INTERVAL*1000,
+                TimeUnit.SECONDS);
     }
 }

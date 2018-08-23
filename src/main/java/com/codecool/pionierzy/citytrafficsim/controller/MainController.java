@@ -85,7 +85,6 @@ public class MainController {
         SimLoop simLoop = new SimLoop(networkDisplay);
         VehicleGenerator generator = new VehicleGenerator(simLoop);
         generator.addToStartEdges(roads.get(roads.size() - 1)); //simple one edge
-        Thread vehicleGenerator = new Thread(generator);
 
         Lights left = new Lights(roads.get(11), 5, 10);
         Lights right = new Lights(roads.get(20), 5, 10);
@@ -100,7 +99,8 @@ public class MainController {
         lightsController.prepareLightsView();
 
         simLoop.start();
-        vehicleGenerator.start();
+        generator.startScheduledExecutorService();
+        //generator.generateOneCar(roads.get(roads.size()-1));
         lightsController.startScheduledExecutorService();
     }
 }
