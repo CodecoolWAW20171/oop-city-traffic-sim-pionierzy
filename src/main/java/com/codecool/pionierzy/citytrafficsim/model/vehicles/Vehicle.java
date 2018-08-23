@@ -26,26 +26,29 @@ public abstract class Vehicle {
     public void move() {
         boolean canSpeedUp = true;
         Lights light = getCurrentRoad().getTrafficLight();
-        double lightsDistance = 1.5 * 120;
+        double lightsDistance = 1.5 * 11;
         List<Vehicle> vehicleList = this.currentRoad.getVehicles();
 
         if (light != null && light.getLightsStatus() != LightsStatus.GREEN) {
             if (this.distanceTravelled == this.currentRoad.getLength() - lightsDistance && light.getLightsStatus() == LightsStatus.RED) {
                 speed = 0;
                 canSpeedUp = false;
-            } else if (this.distanceTravelled + 90 * speed > this.currentRoad.getLength() - lightsDistance && this.distanceTravelled + 360 * speed < this.currentRoad.getLength() && light.getLightsStatus() == LightsStatus.RED) {
-                slowDown(1.0);
+            } else if (this.distanceTravelled + 120 * speed > this.currentRoad.getLength() - lightsDistance && this.distanceTravelled < this.currentRoad.getLength() && light.getLightsStatus() == LightsStatus.RED) {
+                slowDown(0.8);
                 canSpeedUp = false;
-            } else if (this.distanceTravelled + 360 * speed > this.currentRoad.getLength() - lightsDistance && this.distanceTravelled + 360 * speed < this.currentRoad.getLength()) {
-                slowDown(0.3);
+            } else if (this.distanceTravelled + 360 * speed > this.currentRoad.getLength() - lightsDistance && this.distanceTravelled < this.currentRoad.getLength()) {
+                slowDown(0.1);
                 canSpeedUp = false;
             }
 
         } else if (!vehicleList.isEmpty()) {
             for (Vehicle vehicle : vehicleList) {
                 if (vehicle.equals(this)) continue;
+                if (vehicle.getSpeed() == 0 && vehicle.getDistanceTravelled() > this.distanceTravelled && this.distanceTravelled + speed * 15 > vehicle.getDistanceTravelled()) {
+                    speed = 0;
+                }
                 if (this.distanceTravelled < vehicle.distanceTravelled && this.distanceTravelled + 45 * speed > vehicle.distanceTravelled) {
-                    slowDown(1.0);
+                    slowDown(0.9);
                     canSpeedUp = false;
                     break;
                 }
