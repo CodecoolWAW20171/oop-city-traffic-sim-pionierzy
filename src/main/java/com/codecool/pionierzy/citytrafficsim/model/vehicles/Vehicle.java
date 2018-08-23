@@ -32,18 +32,19 @@ public abstract class Vehicle {
                     canSpeedUp = false;
                     break;
                 }
-                if (this.distanceTravelled < vehicle.distanceTravelled && this.distanceTravelled + 180 * this.speed >= vehicle.distanceTravelled) {
+                if (this.distanceTravelled < vehicle.distanceTravelled && this.distanceTravelled + 120 * this.speed >= vehicle.distanceTravelled) {
                     if (vehicle.getSpeed() <= this.speed) {
-                        if (this.distanceTravelled + 60 * speed >= vehicle.getDistanceTravelled()) {
+                        if (this.distanceTravelled + 45 * speed >= vehicle.getDistanceTravelled()) {
                             slowDown(1.0);
                         } else {
                             slowDown(0.6);
                         }
                     } else {
-                        if (this.distanceTravelled + 60 * speed >= vehicle.getDistanceTravelled()) {
-                            slowDown(0.7);
-                        } else {
-                            slowDown(0.3);
+                        if (this.distanceTravelled + 30 * speed >= vehicle.getDistanceTravelled()) {
+                            slowDown(0.8);
+                        }
+                        else if (this.distanceTravelled + 60 * speed >= vehicle.getDistanceTravelled()) {
+                            slowDown(0.4);
                         }
                     }
                     canSpeedUp = false;
