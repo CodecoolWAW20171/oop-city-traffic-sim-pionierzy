@@ -20,25 +20,25 @@ public abstract class Vehicle {
     NetworkNode destination;
     private Rectangle carView;
 
+
     public void move() {
         boolean canSpeedUp = true;
         List<Vehicle> vehicleList = currentRoad.getVehicles();
         if (distanceTravelled + 240 * speed >= currentRoad.getLength() && speed > acceleration * 180) {
-            slowDown(0.4);
+            slowDown(0.1);
             canSpeedUp = false;
         }
         if (!vehicleList.isEmpty()) {
             for (Vehicle vehicle : vehicleList) {
-                if (!vehicle.equals(this) && this.distanceTravelled < vehicle.distanceTravelled && this.distanceTravelled + 150 * this.speed >= vehicle.distanceTravelled) {
-                    if (vehicle.getSpeed() > this.speed) {
-                        slowDown(0.5);
-                    }
-                    if (vehicle.getSpeed() < this.speed) {
-                        if (!canSpeedUp) {
-                            slowDown(0.3); // if slowed down already, can't slow down with more than 100% breaking power;
-                        }
-                        else {
-                            slowDown(1.0);
+                if (!vehicle.equals(this)) continue;
+                if (this.distanceTravelled < vehicle.distanceTravelled && this.distanceTravelled + 180 * this.speed >= vehicle.distanceTravelled) {
+                    if (vehicle.getSpeed() <= this.speed) {
+                        slowDown(1.0);
+                    } else {
+                        if (this.distanceTravelled + 60 * speed >= vehicle.getDistanceTravelled()) {
+                            slowDown(0.8);
+                        } else {
+                            slowDown(0.2);
                         }
                     }
                     canSpeedUp = false;
@@ -67,19 +67,20 @@ public abstract class Vehicle {
             speed = 0;
         }
     }
+
     public void setRndDirection() {
         NetworkNode node = currentRoad.getEnding();
         ArrayList<NetworkNode> neighbours = node.getNeighbours();
         int size = neighbours.size();
         int index;
-        do{
+        do {
             index = new Random().nextInt(size);
-        }while (neighbours.get(index).equals(currentRoad.getBeginning()));
+        } while (neighbours.get(index).equals(currentRoad.getBeginning()));
         HashMap roads = node.getRoads();
         this.destination = neighbours.get(index);
         this.currentRoad.removeVehicle(this);
-        this.currentRoad = (Edge) roads.get(this.destination);
         this.distanceTravelled = 0;
+        this.currentRoad = (Edge) roads.get(this.destination);
     }
 
     public NetworkNode getDestination() {
