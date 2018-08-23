@@ -26,19 +26,17 @@ public abstract class Vehicle {
         List<Vehicle> vehicleList = currentRoad.getVehicles();
         if (!vehicleList.isEmpty()) {
             for (Vehicle vehicle : vehicleList) {
-                if (vehicle.equals(this)) continue;
-                if (vehicle.distanceTravelled > this.distanceTravelled && this.distanceTravelled + 60 * speed > vehicle.distanceTravelled) {
-                    slowDown(1.0);
-                    canSpeedUp = false;
-                    break;
-                }
-                if (this.distanceTravelled + 300 * speed >= currentRoad.getLength() && vehicle.getDistanceTravelled() > this.distanceTravelled) {
-                    slowDown(0.5);
-                    canSpeedUp = false;
-                    break;
-                }
-                if (this.distanceTravelled < vehicle.distanceTravelled && this.distanceTravelled + 240 * this.speed >= vehicle.distanceTravelled) {
-                    slowDown(0.7);
+                if (!vehicle.equals(this)) continue;
+                if (this.distanceTravelled < vehicle.distanceTravelled && this.distanceTravelled + 180 * this.speed >= vehicle.distanceTravelled) {
+                    if (vehicle.getSpeed() <= this.speed) {
+                        slowDown(0.6);
+                    } else {
+                        if (this.distanceTravelled + 60 * speed >= vehicle.getDistanceTravelled()) {
+                            slowDown(0.4);
+                        } else {
+                            slowDown(0.2);
+                        }
+                    }
                     canSpeedUp = false;
                     break;
                 }

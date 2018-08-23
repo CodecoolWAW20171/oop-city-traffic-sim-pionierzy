@@ -28,6 +28,7 @@ public class SimLoop extends AnimationTimer {
 
                 currentLane.deleteCarView(v);
                 if (v.getDestination().getNeighbours().size() == 1) {
+                    v.getCurrentRoad().removeVehicle(v);
                     iterator.remove();
                     continue;
                 }
