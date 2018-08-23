@@ -18,7 +18,7 @@ public abstract class Vehicle {
     double MAXSPEED;
     private double distanceTravelled = 0;
     NetworkNode destination;
-    private Rectangle carView;
+    private Rectangle vehicleView;
 
 
     public void move() {
@@ -113,12 +113,12 @@ public abstract class Vehicle {
         return this.currentRoad;
     }
 
-    public Rectangle getCarView() {
-        return this.carView;
+    public Rectangle getVehicleView() {
+        return this.vehicleView;
     }
 
-    public void setCarView(Rectangle carView) {
-        this.carView = carView;
+    public void setVehicleView(Rectangle vehicleView) {
+        this.vehicleView = vehicleView;
     }
 
     public double getSpeed() {

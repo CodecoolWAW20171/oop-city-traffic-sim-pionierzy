@@ -1,6 +1,9 @@
 package com.codecool.pionierzy.citytrafficsim.view.city;
 
 import com.codecool.pionierzy.citytrafficsim.model.city.Edge;
+import com.codecool.pionierzy.citytrafficsim.model.vehicles.Car;
+import com.codecool.pionierzy.citytrafficsim.model.vehicles.Motorcycle;
+import com.codecool.pionierzy.citytrafficsim.model.vehicles.Truck;
 import com.codecool.pionierzy.citytrafficsim.model.vehicles.Vehicle;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -18,6 +21,10 @@ public class Lane extends AnchorPane {
     private Edge modelEdge;
     private final int CARWIDTH = 4;
     private final int CARHEIGHT = 10;
+    private final int TWIDTH = 6;
+    private final int THEIGHT = 15;
+    private final int MWIDTH = 2;
+    private final int MHEIGHT = 5;
 
 
     public Lane(Edge edge, Pane pane, boolean AZ, boolean oneLaneOnly) {
@@ -43,16 +50,34 @@ public class Lane extends AnchorPane {
 
     //for tests only, animation might be based on setTopAnchor method
     public void displayVehicle(Vehicle v) {
-        Rectangle car = new Rectangle(CARWIDTH, CARHEIGHT, Color.BLUE);
-        v.setCarView(car);
-        this.getChildren().add(v.getCarView());
-        this.setTopAnchor(v.getCarView(), this.height - v.getCarView().getHeight() - v.getDistanceTravelled());//it would be easier to manage with left side traffic
-        this.setLeftAnchor(v.getCarView(), (width - v.getCarView().getWidth()) / 2);
+        Rectangle vehicleView = chooseVehicleToDisplay(v);
+        v.setVehicleView(vehicleView);
+        this.getChildren().add(v.getVehicleView());
+        this.setTopAnchor(v.getVehicleView(), this.height - v.getVehicleView().getHeight() - v.getDistanceTravelled());//it would be easier to manage with left side traffic
+        this.setLeftAnchor(v.getVehicleView(), (width - v.getVehicleView().getWidth()) / 2);
+    }
+
+    private Rectangle chooseVehicleToDisplay(Vehicle v){
+        if (v instanceof Car){
+            Rectangle vehicleView = new Rectangle(CARWIDTH, CARHEIGHT, Color.BLUE);
+            return vehicleView;
+        }
+        else if (v instanceof Truck){
+            Rectangle vehicleView = new Rectangle(TWIDTH, THEIGHT, Color.CYAN);
+            return vehicleView;
+        }
+        else if (v instanceof Motorcycle){
+            Rectangle vehicleView = new Rectangle(MWIDTH, MHEIGHT, Color.WHITE);
+            return vehicleView;
+        }
+        else {
+            return null;
+        }
     }
 
     public void moveVehicle(Vehicle v) {
-        this.setTopAnchor(v.getCarView(), this.height - v.getCarView().getHeight() - v.getDistanceTravelled());//it would be easier to manage with left side traffic
-        this.setLeftAnchor(v.getCarView(), (width - v.getCarView().getWidth()) / 2);
+        this.setTopAnchor(v.getVehicleView(), this.height - v.getVehicleView().getHeight() - v.getDistanceTravelled());//it would be easier to manage with left side traffic
+        this.setLeftAnchor(v.getVehicleView(), (width - v.getVehicleView().getWidth()) / 2);
     }
 
     public void setLights(LightsDisplay lightsDisplay){
@@ -63,7 +88,7 @@ public class Lane extends AnchorPane {
     }
 
     public void deleteCarView(Vehicle v){
-        this.getChildren().remove(v.getCarView());
+        this.getChildren().remove(v.getVehicleView());
     }
 
     public Edge getModelEdge() {
