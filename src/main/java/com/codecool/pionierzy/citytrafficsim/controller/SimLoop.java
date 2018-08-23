@@ -25,14 +25,33 @@ public class SimLoop extends AnimationTimer {
             v.move();
             Lane currentLane = networkDisplay.getVehicleLane(v);
             currentLane.moveVehicle(v);
-            if (v.getDistanceTravelled() >= v.getCurrentRoad().getLength()) {
-
+            if (v.getDistanceTravelled() >= v.getCurrentRoad().getLength()-currentLane.getWidth()) {
+                v.setRndDestination();
+                Point beginning = new Point(v.getCurrentRoad().getBeginning().getX(),v.getCurrentRoad().getBeginning().getY());
+                Point turn = new Point(v.getCurrentRoad().getEnding().getX(),v.getCurrentRoad().getEnding().getY());
+                Point end = new Point(v.getDestination().getX(),v.getDestination().getY());
+                if(isTurningRight(beginning,turn,end)){
+                    currentLane.deleteCarView(v);
+                    if (v.getDestination().getNeighbours().size() == 1) {
+                        iterator.remove();
+                        continue;
+                    }
+                    v.setPreviousRoad();
+                    v.getCurrentRoad().removeVehicle(v);
+                    v.setPreviousRoad();
+                    v.setDistanceTravelledToZero();
+                    v.setCurrentRoad();
+                    v.addVehicleToCurrentRoad(v);
+                    networkDisplay.getVehicleLane(v).displayVehicle(v);
+                    continue;
+                }
+            }
+            if (v.getDistanceTravelled() >= v.getCurrentRoad().getLength()){
                 currentLane.deleteCarView(v);
                 if (v.getDestination().getNeighbours().size() == 1) {
                     iterator.remove();
                     continue;
                 }
-                v.setRndDestination();
                 v.setPreviousRoad();
                 v.getCurrentRoad().removeVehicle(v);
                 v.setPreviousRoad();
