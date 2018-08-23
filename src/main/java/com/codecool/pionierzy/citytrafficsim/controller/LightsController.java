@@ -4,7 +4,6 @@ import com.codecool.pionierzy.citytrafficsim.model.lights.Lights;
 import com.codecool.pionierzy.citytrafficsim.view.city.Lane;
 import com.codecool.pionierzy.citytrafficsim.view.city.LightsDisplay;
 import com.codecool.pionierzy.citytrafficsim.view.city.NetworkDisplay;
-import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 import java.util.HashMap;

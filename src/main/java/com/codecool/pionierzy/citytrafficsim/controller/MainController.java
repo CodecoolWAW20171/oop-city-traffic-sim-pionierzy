@@ -3,15 +3,11 @@ package com.codecool.pionierzy.citytrafficsim.controller;
 import com.codecool.pionierzy.citytrafficsim.model.city.Edge;
 import com.codecool.pionierzy.citytrafficsim.model.city.NetworkNode;
 import com.codecool.pionierzy.citytrafficsim.model.lights.Lights;
-import com.codecool.pionierzy.citytrafficsim.model.lights.LightsStatus;
 import com.codecool.pionierzy.citytrafficsim.view.city.NetworkDisplay;
 import com.codecool.pionierzy.citytrafficsim.view.city.NetworkNodeDisplay;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 public class MainController {
     private Stage primaryStage;
@@ -95,9 +91,13 @@ public class MainController {
         generator.addToStartEdges(roads.get(roads.size() - 1)); //simple one edge
 
         Lights left = new Lights(roads.get(5), 5, 10);
+        roads.get(5).setTrafficLight(left);
         Lights right = new Lights(roads.get(20), 5, 10);
+        roads.get(20).setTrafficLight(right);
         Lights down = new Lights(roads.get(15), 10, 10);
+        roads.get(15).setTrafficLight(down);
         Lights up = new Lights(roads.get(9), 10, 10);
+        roads.get(9).setTrafficLight(up);
 
         LightsController lightsController = new LightsController(networkDisplay);
         lightsController.getLightsArrayList().add(left);
@@ -108,7 +108,6 @@ public class MainController {
 
         simLoop.start();
         generator.startScheduledExecutorService();
-        //generator.generateOneCar(roads.get(roads.size()-1));
         lightsController.startScheduledExecutorService();
     }
 }

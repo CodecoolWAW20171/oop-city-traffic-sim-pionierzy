@@ -27,7 +27,7 @@ public class LightsDisplay extends Rectangle {
     }
 
     public void setLightsColor() {
-        switch (lights.getLightsStatus()){
+        switch (lights.getLightsStatus()) {
             case GREEN:
                 this.setFill(GREEN);
                 break;

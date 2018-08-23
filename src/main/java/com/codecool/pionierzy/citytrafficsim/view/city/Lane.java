@@ -59,20 +59,17 @@ public class Lane extends AnchorPane {
         this.toBack();
     }
 
-    private Rectangle chooseVehicleToDisplay(Vehicle v){
-        if (v instanceof Car){
+    private Rectangle chooseVehicleToDisplay(Vehicle v) {
+        if (v instanceof Car) {
             Rectangle vehicleView = new Rectangle(CARWIDTH, CARHEIGHT, Color.BLUE);
             return vehicleView;
-        }
-        else if (v instanceof Truck){
+        } else if (v instanceof Truck) {
             Rectangle vehicleView = new Rectangle(TWIDTH, THEIGHT, Color.CYAN);
             return vehicleView;
-        }
-        else if (v instanceof Motorcycle){
+        } else if (v instanceof Motorcycle) {
             Rectangle vehicleView = new Rectangle(MWIDTH, MHEIGHT, Color.WHITE);
             return vehicleView;
-        }
-        else {
+        } else {
             return null;
         }
     }
@@ -84,14 +81,14 @@ public class Lane extends AnchorPane {
         this.toBack();
     }
 
-    public void setLights(LightsDisplay lightsDisplay){
+    public void setLights(LightsDisplay lightsDisplay) {
         this.setTopAnchor(lightsDisplay, lightsDisplay.lights.getDistanceLocation());
         this.setLeftAnchor(lightsDisplay, 0.0);
         this.getChildren().add(lightsDisplay);
         lightsDisplay.toFront();
     }
 
-    public void deleteCarView(Vehicle v){
+    public void deleteCarView(Vehicle v) {
         this.getChildren().remove(v.getVehicleView());
     }
 

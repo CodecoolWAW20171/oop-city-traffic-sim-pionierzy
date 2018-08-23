@@ -1,5 +1,6 @@
 package com.codecool.pionierzy.citytrafficsim.model.city;
 
+import com.codecool.pionierzy.citytrafficsim.model.lights.Lights;
 import com.codecool.pionierzy.citytrafficsim.model.vehicles.Vehicle;
 
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ public class Edge implements Comparable {
     private NetworkNode beginning;
     private NetworkNode ending;
     private double length;
+    private Lights trafficLight = null;
 
 
     private List<Vehicle> vehicles = new ArrayList<>();
@@ -48,5 +50,13 @@ public class Edge implements Comparable {
 
     public List<Vehicle> getVehicles() {
         return vehicles;
+    }
+
+    public void setTrafficLight(Lights trafficLight) {
+        this.trafficLight = trafficLight;
+    }
+
+    public Lights getTrafficLight() {
+        return trafficLight;
     }
 }

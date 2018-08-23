@@ -31,7 +31,7 @@ public class NetworkDisplay extends Pane {
         return null;
     }
 
-    public Lane getLane(Edge edge){
+    public Lane getLane(Edge edge) {
         for (Lane lane : this.lanes) {
             Edge lanesEdge = lane.getModelEdge();
             if (edge.equals(lanesEdge)) return lane;
