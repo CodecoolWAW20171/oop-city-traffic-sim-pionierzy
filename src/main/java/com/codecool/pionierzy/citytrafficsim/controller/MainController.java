@@ -100,7 +100,8 @@ public class MainController {
         lightsController.prepareLightsView();
 
         simLoop.start();
-        vehicleGenerator.start();
+        //vehicleGenerator.start();
+        generator.generateOneCar(roads.get(roads.size()-1));
         lightsController.startScheduledExecutorService();
     }
 }
