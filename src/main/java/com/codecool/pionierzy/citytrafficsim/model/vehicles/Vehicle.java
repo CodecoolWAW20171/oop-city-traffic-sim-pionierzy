@@ -52,13 +52,17 @@ public abstract class Vehicle {
                 }
             }
         }
-        if (distanceTravelled + 90 * speed >= currentRoad.getLength() && speed > acceleration * 180 && canSpeedUp) {
-            slowDown(0.2);
-            canSpeedUp = false;
+        if (distanceTravelled + 90 * speed >= currentRoad.getLength() && canSpeedUp) {
+            if (speed > acceleration * 180) {
+                slowDown(0.2);
+                canSpeedUp = false;
+            }
         }
-        else if (distanceTravelled + 300 * speed >= currentRoad.getLength() && speed > acceleration * 240 && canSpeedUp) {
-            slowDown(0.03);
-            canSpeedUp = false;
+        else if (distanceTravelled + 300 * speed >= currentRoad.getLength() && canSpeedUp) {
+            if (speed > acceleration * 300) {
+                slowDown(0.05);
+                canSpeedUp = false;
+            }
         }
 
         if (canSpeedUp) {
