@@ -22,6 +22,7 @@ public class SimLoop extends AnimationTimer {
     public void handle(long now) {
         for (Iterator<Vehicle> iterator = vehicleList.iterator(); iterator.hasNext(); ) {
             Vehicle v = iterator.next();
+            v.getCarView().toFront();
             v.move();
             Lane currentLane = networkDisplay.getVehicleLane(v);
             currentLane.moveVehicle(v);
