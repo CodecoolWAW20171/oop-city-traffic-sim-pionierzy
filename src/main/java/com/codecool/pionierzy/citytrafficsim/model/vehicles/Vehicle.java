@@ -63,9 +63,6 @@ public abstract class Vehicle {
                 speed = MAXSPEED;
             }
         }
-        if (distanceTravelled >= currentRoad.getLength()) {
-            setRndDirection();
-        }
         distanceTravelled += speed;
     }
 
