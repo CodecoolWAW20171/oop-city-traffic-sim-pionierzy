@@ -23,36 +23,59 @@ public class MainController {
 
     public void startNewSimulation(NetworkDisplay networkDisplay) {
         // this is here for tests, when network controller is done this will be obsolete
-        NetworkNode nw = new NetworkNode(350, 150);
-        NetworkNode w = new NetworkNode(350, 325);
-        NetworkNode sw = new NetworkNode(350, 500);
-        NetworkNode se = new NetworkNode(700, 500);
-        NetworkNode ne = new NetworkNode(700, 150);
-        NetworkNode startNode = new NetworkNode(100, 325);
+
+        NetworkNode startNode = new NetworkNode(-50, 350);
+
+        NetworkNode c1r1 = new NetworkNode(50, 50);
+        NetworkNode c1r2 = new NetworkNode(50, 350);
+        NetworkNode c1r3 = new NetworkNode(50, 650);
+        NetworkNode c2r1 = new NetworkNode(550, 650);
+        NetworkNode c2r2 = new NetworkNode(550, 350);
+        NetworkNode c2r3 = new NetworkNode(550, 50);
+        NetworkNode c3r1 = new NetworkNode(1050, 650);
+        NetworkNode c3r2 = new NetworkNode(1050, 350);
+        NetworkNode c3r3 = new NetworkNode(1050, 50);
+
+        new NetworkNodeDisplay(startNode, networkDisplay);
+        new NetworkNodeDisplay(c1r1, networkDisplay);
+        new NetworkNodeDisplay(c1r2, networkDisplay);
+        new NetworkNodeDisplay(c1r3, networkDisplay);
+        new NetworkNodeDisplay(c2r1, networkDisplay);
+        new NetworkNodeDisplay(c2r2, networkDisplay);
+        new NetworkNodeDisplay(c2r3, networkDisplay);
+        new NetworkNodeDisplay(c3r1, networkDisplay);
+        new NetworkNodeDisplay(c3r2, networkDisplay);
+        new NetworkNodeDisplay(c3r3, networkDisplay);
 
 
-        NetworkNodeDisplay node1Display = new NetworkNodeDisplay(nw, networkDisplay);
-        NetworkNodeDisplay node2Display = new NetworkNodeDisplay(w, networkDisplay);
-        NetworkNodeDisplay node3Display = new NetworkNodeDisplay(sw, networkDisplay);
-        NetworkNodeDisplay node4Display = new NetworkNodeDisplay(se, networkDisplay);
-        NetworkNodeDisplay node5Display = new NetworkNodeDisplay(ne, networkDisplay);
-        NetworkNodeDisplay startNodeDisplay = new NetworkNodeDisplay(startNode, networkDisplay);
-
-
-        roads.add(nw.addNeighbour(w)); //1
-        roads.add(nw.addNeighbour(ne)); //2
-        roads.add(w.addNeighbour(nw)); //3
-        roads.add(w.addNeighbour(sw)); //4
-        roads.add(w.addNeighbour(startNode)); //5
-        roads.add(sw.addNeighbour(se)); //6
-        roads.add(sw.addNeighbour(w)); //7
-        roads.add(ne.addNeighbour(nw)); //8
-        roads.add(se.addNeighbour(sw)); //9
-        roads.add(se.addNeighbour(ne)); //10
-        roads.add(ne.addNeighbour(se)); //11
-
-        roads.add(startNode.addNeighbour(w));// leave it as a last road! //12
-
+        roads.add(c1r1.addNeighbour(c1r2));
+        roads.add(c1r1.addNeighbour(c2r3));
+        roads.add(c1r2.addNeighbour(c1r1));
+        roads.add(c1r2.addNeighbour(c1r3));
+        roads.add(c1r2.addNeighbour(startNode));
+        roads.add(c1r3.addNeighbour(c2r1));
+        roads.add(c1r3.addNeighbour(c1r2));
+        roads.add(c2r3.addNeighbour(c1r1));
+        roads.add(c2r1.addNeighbour(c1r3));
+        roads.add(c2r1.addNeighbour(c2r3));
+        roads.add(c2r3.addNeighbour(c2r1));
+        roads.add(c1r2.addNeighbour(c2r2));
+        roads.add(c2r2.addNeighbour(c1r2));
+        roads.add(c2r1.addNeighbour(c2r2));
+        roads.add(c2r3.addNeighbour(c2r2));
+        roads.add(c2r2.addNeighbour(c2r1));
+        roads.add(c2r2.addNeighbour(c2r3));
+        roads.add(c2r1.addNeighbour(c3r1));
+        roads.add(c3r1.addNeighbour(c2r1));
+        roads.add(c2r2.addNeighbour(c3r2));
+        roads.add(c3r2.addNeighbour(c2r2));
+        roads.add(c2r3.addNeighbour(c3r3));
+        roads.add(c3r3.addNeighbour(c2r3));
+        roads.add(c3r1.addNeighbour(c3r2));
+        roads.add(c3r2.addNeighbour(c3r1));
+        roads.add(c3r2.addNeighbour(c3r3));
+        roads.add(c3r3.addNeighbour(c3r2));
+        roads.add(startNode.addNeighbour(c1r2)); // leave it as a last road!
 
         for (Edge road : this.roads) {
             networkDisplay.createLaneView(road);
@@ -63,11 +86,15 @@ public class MainController {
         VehicleGenerator generator = new VehicleGenerator(simLoop);
         generator.addToStartEdges(roads.get(roads.size() - 1)); //simple one edge
         Thread vehicleGenerator = new Thread(generator);
+
         Lights left = new Lights(roads.get(11), 5, 60);
+        Lights right = new Lights(roads.get(10), 5, 60);
         Lights down = new Lights(roads.get(6), 10, 100);
         Lights up = new Lights(roads.get(0), 10, 80);
+
         LightsController lightsController = new LightsController(networkDisplay);
         lightsController.getLightsArrayList().add(left);
+        lightsController.getLightsArrayList().add(right);
         lightsController.getLightsArrayList().add(down);
         lightsController.getLightsArrayList().add(up);
         lightsController.prepareLightsView();
@@ -75,7 +102,5 @@ public class MainController {
         simLoop.start();
         vehicleGenerator.start();
         lightsController.startScheduledExecutorService();
-
-
     }
 }

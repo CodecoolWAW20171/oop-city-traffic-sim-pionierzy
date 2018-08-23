@@ -24,21 +24,27 @@ public abstract class Vehicle {
     public void move() {
         boolean canSpeedUp = true;
         List<Vehicle> vehicleList = currentRoad.getVehicles();
-        if (distanceTravelled + 240 * speed >= currentRoad.getLength() && speed > acceleration * 180) {
-            slowDown(0.1);
-            canSpeedUp = false;
-        }
         if (!vehicleList.isEmpty()) {
             for (Vehicle vehicle : vehicleList) {
-                if (!vehicle.equals(this)) continue;
-                if (this.distanceTravelled < vehicle.distanceTravelled && this.distanceTravelled + 180 * this.speed >= vehicle.distanceTravelled) {
+                if (vehicle.equals(this)) continue;
+                if (this.distanceTravelled < vehicle.distanceTravelled && this.distanceTravelled + 45 * speed > vehicle.distanceTravelled) {
+                    slowDown(1.0);
+                    canSpeedUp = false;
+                    break;
+                }
+                if (this.distanceTravelled < vehicle.distanceTravelled && this.distanceTravelled + 120 * this.speed >= vehicle.distanceTravelled) {
                     if (vehicle.getSpeed() <= this.speed) {
-                        slowDown(1.0);
-                    } else {
-                        if (this.distanceTravelled + 60 * speed >= vehicle.getDistanceTravelled()) {
-                            slowDown(0.8);
+                        if (this.distanceTravelled + 45 * speed >= vehicle.getDistanceTravelled()) {
+                            slowDown(1.0);
                         } else {
-                            slowDown(0.2);
+                            slowDown(0.6);
+                        }
+                    } else {
+                        if (this.distanceTravelled + 30 * speed >= vehicle.getDistanceTravelled()) {
+                            slowDown(0.8);
+                        }
+                        else if (this.distanceTravelled + 60 * speed >= vehicle.getDistanceTravelled()) {
+                            slowDown(0.4);
                         }
                     }
                     canSpeedUp = false;
@@ -46,9 +52,19 @@ public abstract class Vehicle {
                 }
             }
         }
-        if (distanceTravelled >= currentRoad.getLength()) {
-            setRndDirection();
+        if (distanceTravelled + 90 * speed >= currentRoad.getLength() && canSpeedUp) {
+            if (speed > acceleration * 180) {
+                slowDown(0.2);
+                canSpeedUp = false;
+            }
         }
+        else if (distanceTravelled + 300 * speed >= currentRoad.getLength() && canSpeedUp) {
+            if (speed > acceleration * 300) {
+                slowDown(0.05);
+                canSpeedUp = false;
+            }
+        }
+
         if (canSpeedUp) {
             if (speed < MAXSPEED - acceleration) {
                 speed += acceleration;
@@ -61,6 +77,7 @@ public abstract class Vehicle {
 
     private void slowDown(Double decelerationSpeed) {
         // deceleration Speed must be a double between 0 and 1
+        if (decelerationSpeed < 0.0 || decelerationSpeed > 1.0) return;
         if (speed >= deceleration * decelerationSpeed) {
             speed -= deceleration * decelerationSpeed;
         } else {
@@ -81,22 +98,23 @@ public abstract class Vehicle {
         this.currentRoad.removeVehicle(this);
         this.distanceTravelled = 0;
         this.currentRoad = (Edge) roads.get(this.destination);
+        this.currentRoad.addVehicle(this);
     }
 
     public NetworkNode getDestination() {
-        return destination;
+        return this.destination;
     }
 
     public double getDistanceTravelled() {
-        return distanceTravelled;
+        return this.distanceTravelled;
     }
 
     public Edge getCurrentRoad() {
-        return currentRoad;
+        return this.currentRoad;
     }
 
     public Rectangle getCarView() {
-        return carView;
+        return this.carView;
     }
 
     public void setCarView(Rectangle carView) {

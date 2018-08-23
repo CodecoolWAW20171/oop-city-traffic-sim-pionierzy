@@ -10,9 +10,10 @@ import java.util.LinkedList;
 
 public class SimLoop extends AnimationTimer {
 
-    private LinkedList<Vehicle> vehicleList = new LinkedList<Vehicle>();
-    NetworkDisplay networkDisplay;
-    private Lane currentLane;
+    private LinkedList<Vehicle> vehicleList = new LinkedList<>();
+    private LinkedList<Vehicle> vehiclesToAdd = new LinkedList<>();
+    private LinkedList<Vehicle> vehiclesToRemove = new LinkedList<>();
+    private NetworkDisplay networkDisplay;
 
     public SimLoop(NetworkDisplay networkDisplay) {
         this.networkDisplay = networkDisplay;
@@ -23,12 +24,13 @@ public class SimLoop extends AnimationTimer {
         for (Iterator<Vehicle> iterator = vehicleList.iterator(); iterator.hasNext(); ) {
             Vehicle v = iterator.next();
             v.move();
-            currentLane = networkDisplay.getVehicleLane(v);
-            currentLane.moveVehicle(v);//test
+            Lane currentLane = networkDisplay.getVehicleLane(v);
+            currentLane.moveVehicle(v);
             if (v.getDistanceTravelled() >= v.getCurrentRoad().getLength()) {
 
                 currentLane.deleteCarView(v);
                 if (v.getDestination().getNeighbours().size() == 1) {
+                    v.getCurrentRoad().removeVehicle(v);
                     iterator.remove();
                     continue;
                 }
@@ -36,9 +38,15 @@ public class SimLoop extends AnimationTimer {
                 networkDisplay.getVehicleLane(v).displayVehicle(v);
             }
         }
+        vehicleList.addAll(vehiclesToAdd);
+        for (Vehicle vehicle: vehiclesToRemove) {
+            vehicleList.remove(vehicle);
+        }
+        vehiclesToAdd.clear();
+        vehiclesToRemove.clear();
     }
 
-    public void addVehicleToLane(Vehicle v) {
+    public synchronized void addVehicleToLane(Vehicle v) {
         networkDisplay.getVehicleLane(v).displayVehicle(v);
     }
 
@@ -47,11 +55,11 @@ public class SimLoop extends AnimationTimer {
     }
 
     public synchronized void addToVehicleList(Vehicle vehicleToAdd) {
-        this.vehicleList.add(vehicleToAdd);
+        this.vehiclesToAdd.add(vehicleToAdd);
     }
 
     public synchronized void removeVehicleFromList(Vehicle vehicle) {
-        this.vehicleList.remove(vehicle);
+        this.vehiclesToRemove.add(vehicle);
     }
 
 }

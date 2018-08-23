@@ -16,8 +16,8 @@ public class Lane extends AnchorPane {
     private double height;
     private double angle;
     private Edge modelEdge;
-    private final int CARWIDTH = 6;
-    private final int CARHEIGHT = 20;
+    private final int CARWIDTH = 4;
+    private final int CARHEIGHT = 10;
 
 
     public Lane(Edge edge, Pane pane, boolean AZ, boolean oneLaneOnly) {
@@ -48,14 +48,11 @@ public class Lane extends AnchorPane {
         this.getChildren().add(v.getCarView());
         this.setTopAnchor(v.getCarView(), this.height - v.getCarView().getHeight() - v.getDistanceTravelled());//it would be easier to manage with left side traffic
         this.setLeftAnchor(v.getCarView(), (width - v.getCarView().getWidth()) / 2);
-        //this.toFront();
-
     }
 
     public void moveVehicle(Vehicle v) {
         this.setTopAnchor(v.getCarView(), this.height - v.getCarView().getHeight() - v.getDistanceTravelled());//it would be easier to manage with left side traffic
         this.setLeftAnchor(v.getCarView(), (width - v.getCarView().getWidth()) / 2);
-        //this.toFront();
     }
 
     public void setLights(LightsDisplay lightsDisplay){

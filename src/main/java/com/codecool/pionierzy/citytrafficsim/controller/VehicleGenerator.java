@@ -10,7 +10,7 @@ public class VehicleGenerator implements Runnable {
     private final int CAR_INTENSITY = 5;
     private final int TRUCK_INTENSITY = 2;
     private final int MOTORCYCLE_INTENSITY = 2;
-    private final int INTERVAL = 5000; //5 sec
+    private final int INTERVAL = 500; //5 sec
     private ArrayList<Edge> startEdges = new ArrayList<Edge>();
     private SimLoop simLoop;
 
