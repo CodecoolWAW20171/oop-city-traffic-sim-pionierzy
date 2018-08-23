@@ -32,7 +32,13 @@ public class SimLoop extends AnimationTimer {
                     iterator.remove();
                     continue;
                 }
-                v.setRndDirection();
+                v.setRndDestination();
+                v.setPreviousRoad();
+                v.getCurrentRoad().removeVehicle(v);
+                v.setPreviousRoad();
+                v.setDistanceTravelledToZero();
+                v.setCurrentRoad();
+                v.addVehicleToCurrentRoad(v);
                 networkDisplay.getVehicleLane(v).displayVehicle(v);
             }
         }

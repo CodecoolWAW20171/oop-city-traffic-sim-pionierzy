@@ -5,7 +5,6 @@ import com.codecool.pionierzy.citytrafficsim.model.city.NetworkNode;
 import javafx.scene.shape.Rectangle;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -16,9 +15,10 @@ public abstract class Vehicle {
     double deceleration;
     Edge currentRoad;
     double MAXSPEED;
-    private double distanceTravelled = 0;
     NetworkNode destination;
+    private double distanceTravelled = 0;
     private Rectangle carView;
+    private Edge previousRoad;
 
 
     public void move() {
@@ -55,9 +55,6 @@ public abstract class Vehicle {
                 speed = MAXSPEED;
             }
         }
-        if (distanceTravelled >= currentRoad.getLength()) {
-            setRndDirection();
-        }
         distanceTravelled += speed;
     }
 
@@ -71,7 +68,7 @@ public abstract class Vehicle {
         }
     }
 
-    public void setRndDirection() {
+    public void setRndDestination() {
         NetworkNode node = currentRoad.getEnding();
         ArrayList<NetworkNode> neighbours = node.getNeighbours();
         int size = neighbours.size();
@@ -79,12 +76,7 @@ public abstract class Vehicle {
         do {
             index = new Random().nextInt(size);
         } while (neighbours.get(index).equals(currentRoad.getBeginning()));
-        HashMap roads = node.getRoads();
         this.destination = neighbours.get(index);
-        this.currentRoad.removeVehicle(this);
-        this.distanceTravelled = 0;
-        this.currentRoad = (Edge) roads.get(this.destination);
-        this.currentRoad.addVehicle(this);
     }
 
     public NetworkNode getDestination() {
@@ -99,6 +91,10 @@ public abstract class Vehicle {
         return this.currentRoad;
     }
 
+    public Edge getPreviousRoad() {
+        return previousRoad;
+    }
+
     public Rectangle getCarView() {
         return this.carView;
     }
@@ -110,4 +106,21 @@ public abstract class Vehicle {
     public double getSpeed() {
         return this.speed;
     }
+
+    public void setPreviousRoad() {
+        this.previousRoad = currentRoad;
+    }
+
+    public void setDistanceTravelledToZero() {
+        this.distanceTravelled = 0;
+    }
+
+    public void setCurrentRoad() {
+        this.currentRoad = currentRoad.getEnding().getRoads().get(this.destination);
+    }
+
+    public void addVehicleToCurrentRoad(Vehicle v) {
+        this.currentRoad.addVehicle(v);
+    }
+
 }
