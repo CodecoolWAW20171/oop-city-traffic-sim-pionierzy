@@ -5,6 +5,7 @@ import com.codecool.pionierzy.citytrafficsim.view.city.Lane;
 import com.codecool.pionierzy.citytrafficsim.view.city.NetworkDisplay;
 import javafx.animation.AnimationTimer;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 
 public class SimLoop extends AnimationTimer {
@@ -19,34 +20,26 @@ public class SimLoop extends AnimationTimer {
 
     @Override
     public void handle(long now) {
-        boolean carWasDeleted = false;
-        LinkedList<Vehicle> copyOfVehicleList  = new LinkedList<Vehicle>();
-        for (Vehicle v : vehicleList) {
-
+        for (Iterator<Vehicle> iterator = vehicleList.iterator(); iterator.hasNext(); ) {
+            Vehicle v = iterator.next();
             v.move();
             currentLane = networkDisplay.getVehicleLane(v);
             currentLane.moveVehicle(v);//test
             if (v.getDistanceTravelled() >= v.getCurrentRoad().getLength()) {
 
                 currentLane.deleteCarView(v);
-                if (v.getDestination().getNeighbours().size() == 1){
-                    copyOfVehicleList = vehicleList;
-                    copyOfVehicleList.remove(v);
-                    carWasDeleted = true;
+                if (v.getDestination().getNeighbours().size() == 1) {
+                    iterator.remove();
                     continue;
                 }
                 v.setRndDirection();
                 networkDisplay.getVehicleLane(v).displayVehicle(v);
             }
         }
-        if (carWasDeleted){
-            vehicleList = copyOfVehicleList;
-        }
-
     }
 
-    public void addVehicleToLane(Vehicle v){
-            networkDisplay.getVehicleLane(v).displayVehicle(v);
+    public void addVehicleToLane(Vehicle v) {
+        networkDisplay.getVehicleLane(v).displayVehicle(v);
     }
 
     public synchronized LinkedList<Vehicle> getVehicleList() {
