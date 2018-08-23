@@ -12,18 +12,16 @@ public class Lights {
     private final int GREENDURATION = 4;
     //private final int GREENDURATION = Math.round((CYCLETIME - YELLOWDURATION)/2);
 
-    public Lights(Edge road, int timeLeft, LightsStatus lightsStatus) {
+    public Lights(Edge road, int timeLeft) {
         this.road = road;
         this.timeLeft = timeLeft;
-        this.lightsStatus = lightsStatus;
          this.distanceLocation = road.getLength()*0.7;
     }
 
-    public Lights(Edge road, double distanceLocation, int timeLeft, LightsStatus lightsStatus) {
+    public Lights(Edge road, double distanceLocation, int timeLeft) {
         this.road = road;
         this.distanceLocation = distanceLocation;
         this.timeLeft = timeLeft;
-        this.lightsStatus = lightsStatus;
     }
 
     public int getTimeLeft() {
@@ -59,28 +57,6 @@ public class Lights {
                 System.out.println(this + " red " + timeLeft);
                 break;
         }
-
-//        switch (this.getLightsStatus()){
-//            case GREEN:
-//                if (timeLeft == YELLOWDURATION){
-//                    this.lightsStatus = LightsStatus.YELLOW;
-//                    System.out.println(this + " yellow " + timeLeft);
-//                }
-//                break;
-//            case YELLOW:
-//                if (timeLeft == 0){
-//                    this.lightsStatus = LightsStatus.RED;
-//                    System.out.println(this + " red " + timeLeft);
-//                    timeLeft = CYCLETIME;
-//                }
-//                break;
-//            case RED:
-//                if (timeLeft == CYCLETIME - GREENDURATION){
-//                    this.lightsStatus = LightsStatus.GREEN;
-//                    System.out.println(this + " green " + timeLeft);
-//                }
-//                break;
-//        }
     }
 
     public Edge getRoad() {
