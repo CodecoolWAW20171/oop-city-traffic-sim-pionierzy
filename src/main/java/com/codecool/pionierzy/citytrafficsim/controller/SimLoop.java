@@ -5,6 +5,7 @@ import com.codecool.pionierzy.citytrafficsim.view.city.Lane;
 import com.codecool.pionierzy.citytrafficsim.view.city.NetworkDisplay;
 import javafx.animation.AnimationTimer;
 
+import java.awt.*;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -52,5 +53,19 @@ public class SimLoop extends AnimationTimer {
     public synchronized void removeVehicleFromList(Vehicle vehicle) {
         this.vehicleList.remove(vehicle);
     }
-
+    private boolean isTurningRight(Point beginning, Point turn, Point end){
+        if(turn.getX() == beginning.getX()){     // vertical
+            if(beginning.getY() > turn.getY()){  // going up
+                return turn.getX() < end.getX();
+            }else{                               // going down
+                return turn.getX() > end.getX();
+            }
+        }else{                                   // horizontal
+            if(beginning.getX() < turn.getX()){  // going right
+                return end.getY() > turn.getY();
+            }else{                               //going left
+                return end.getY() < turn.getY();
+            }
+        }
+    }
 }
