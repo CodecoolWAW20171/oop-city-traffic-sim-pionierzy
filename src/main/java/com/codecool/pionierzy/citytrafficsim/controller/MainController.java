@@ -94,10 +94,10 @@ public class MainController {
         VehicleGenerator generator = new VehicleGenerator(simLoop);
         generator.addToStartEdges(roads.get(roads.size() - 1)); //simple one edge
 
-        Lights left = new Lights(roads.get(11), 5, 10);
+        Lights left = new Lights(roads.get(5), 5, 10);
         Lights right = new Lights(roads.get(20), 5, 10);
-        Lights down = new Lights(roads.get(13), 10, 10);
-        Lights up = new Lights(roads.get(14), 10, 10);
+        Lights down = new Lights(roads.get(15), 10, 10);
+        Lights up = new Lights(roads.get(9), 10, 10);
 
         LightsController lightsController = new LightsController(networkDisplay);
         lightsController.getLightsArrayList().add(left);
