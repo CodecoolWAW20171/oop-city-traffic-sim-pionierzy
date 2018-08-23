@@ -29,12 +29,12 @@ public class MainController {
         NetworkNode c1r1 = new NetworkNode(50, 50);
         NetworkNode c1r2 = new NetworkNode(50, 350);
         NetworkNode c1r3 = new NetworkNode(50, 650);
-        NetworkNode c2r1 = new NetworkNode(550, 650);
+        NetworkNode c2r1 = new NetworkNode(550, 50);
         NetworkNode c2r2 = new NetworkNode(550, 350);
-        NetworkNode c2r3 = new NetworkNode(550, 50);
-        NetworkNode c3r1 = new NetworkNode(1050, 650);
+        NetworkNode c2r3 = new NetworkNode(550, 650);
+        NetworkNode c3r1 = new NetworkNode(1050, 50);
         NetworkNode c3r2 = new NetworkNode(1050, 350);
-        NetworkNode c3r3 = new NetworkNode(1050, 50);
+        NetworkNode c3r3 = new NetworkNode(1050, 650);
 
         new NetworkNodeDisplay(startNode, networkDisplay);
         new NetworkNodeDisplay(c1r1, networkDisplay);
@@ -49,33 +49,41 @@ public class MainController {
 
 
         roads.add(c1r1.addNeighbour(c1r2));
-        roads.add(c1r1.addNeighbour(c2r3));
+        roads.add(c1r1.addNeighbour(c2r1));
+
         roads.add(c1r2.addNeighbour(c1r1));
         roads.add(c1r2.addNeighbour(c1r3));
         roads.add(c1r2.addNeighbour(startNode));
-        roads.add(c1r3.addNeighbour(c2r1));
-        roads.add(c1r3.addNeighbour(c1r2));
-        roads.add(c2r3.addNeighbour(c1r1));
-        roads.add(c2r1.addNeighbour(c1r3));
-        roads.add(c2r1.addNeighbour(c2r3));
-        roads.add(c2r3.addNeighbour(c2r1));
         roads.add(c1r2.addNeighbour(c2r2));
-        roads.add(c2r2.addNeighbour(c1r2));
+
+        roads.add(c1r3.addNeighbour(c2r3));
+        roads.add(c1r3.addNeighbour(c1r2));
+
+        roads.add(c2r1.addNeighbour(c1r1));
         roads.add(c2r1.addNeighbour(c2r2));
-        roads.add(c2r3.addNeighbour(c2r2));
-        roads.add(c2r2.addNeighbour(c2r1));
-        roads.add(c2r2.addNeighbour(c2r3));
         roads.add(c2r1.addNeighbour(c3r1));
-        roads.add(c3r1.addNeighbour(c2r1));
+
+        roads.add(c2r2.addNeighbour(c2r1));
+        roads.add(c2r2.addNeighbour(c1r2));
         roads.add(c2r2.addNeighbour(c3r2));
-        roads.add(c3r2.addNeighbour(c2r2));
+        roads.add(c2r2.addNeighbour(c2r3));
+
+        roads.add(c2r3.addNeighbour(c2r2));
         roads.add(c2r3.addNeighbour(c3r3));
-        roads.add(c3r3.addNeighbour(c2r3));
+        roads.add(c2r3.addNeighbour(c1r3));
+
+        roads.add(c3r1.addNeighbour(c2r1));
         roads.add(c3r1.addNeighbour(c3r2));
+
+        roads.add(c3r2.addNeighbour(c2r2));
         roads.add(c3r2.addNeighbour(c3r1));
         roads.add(c3r2.addNeighbour(c3r3));
+
+        roads.add(c3r3.addNeighbour(c2r3));
         roads.add(c3r3.addNeighbour(c3r2));
-        roads.add(startNode.addNeighbour(c1r2)); // leave it as a last road!
+
+        roads.add(startNode.addNeighbour(c1r2));// leave it as a last road!
+
 
         for (Edge road : this.roads) {
             networkDisplay.createLaneView(road);
