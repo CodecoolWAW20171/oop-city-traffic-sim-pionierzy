@@ -17,7 +17,7 @@ public class VehicleGenerator implements Runnable {
     private final int CAR_INTENSITY = 5;
     private final int TRUCK_INTENSITY = 2;
     private final int MOTORCYCLE_INTENSITY = 2;
-    private final int INTERVAL = 2000; // sec
+    private final int INTERVAL = 2; // sec
     private ArrayList<Edge> startEdges = new ArrayList<Edge>();
     private SimLoop simLoop;
     private Random random = new Random();
@@ -30,7 +30,6 @@ public class VehicleGenerator implements Runnable {
 
     @Override
     public void run() {
-        while (true) { // scheduler is needed !!!!!!!!!!
             for (Edge startEdge : startEdges) {
                 randint = random.nextInt(CAR_INTENSITY + TRUCK_INTENSITY + MOTORCYCLE_INTENSITY);
 
@@ -51,13 +50,6 @@ public class VehicleGenerator implements Runnable {
                     createVehicle(v, startEdge);
                 }
             }
-
-            try {
-                Thread.sleep(INTERVAL);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     private void createVehicle(Vehicle v, Edge startEdge){
@@ -89,7 +81,7 @@ public class VehicleGenerator implements Runnable {
         scheduler.scheduleAtFixedRate(
                 () -> this.run(),
                 0,
-                INTERVAL*1000,
+                INTERVAL,
                 TimeUnit.SECONDS);
     }
 }
