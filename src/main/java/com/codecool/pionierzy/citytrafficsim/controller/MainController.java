@@ -63,13 +63,14 @@ public class MainController {
         VehicleGenerator generator = new VehicleGenerator(simLoop);
         generator.addToStartEdges(roads.get(roads.size() - 1)); //simple one edge
         Thread vehicleGenerator = new Thread(generator);
-        Lights left = new Lights(roads.get(11), 10);
-        Lights down = new Lights(roads.get(6), 10);
-        Lights up = new Lights(roads.get(0), 10);
-        LightsController lightsController = new LightsController();
+        Lights left = new Lights(roads.get(11), 5, 60);
+        Lights down = new Lights(roads.get(6), 10, 100);
+        Lights up = new Lights(roads.get(0), 10, 80);
+        LightsController lightsController = new LightsController(networkDisplay);
         lightsController.getLightsArrayList().add(left);
         lightsController.getLightsArrayList().add(down);
         lightsController.getLightsArrayList().add(up);
+        lightsController.prepareLightsView();
 
         simLoop.start();
         vehicleGenerator.start();

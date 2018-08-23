@@ -7,18 +7,18 @@ public class Lights {
     private double distanceLocation;
     private final int CYCLETIME = 10;
     private int timeLeft;
-    private LightsStatus lightsStatus;
+    private LightsStatus lightsStatus = LightsStatus.GREEN;
     private final int YELLOWDURATION = 1;
     private final int GREENDURATION = 4;
-    //private final int GREENDURATION = Math.round((CYCLETIME - YELLOWDURATION)/2);
+    //private double distanceFromEnding = 35;
 
     public Lights(Edge road, int timeLeft) {
         this.road = road;
         this.timeLeft = timeLeft;
-         this.distanceLocation = road.getLength()*0.7;
+        this.distanceLocation = road.getLength()*0.65;
     }
 
-    public Lights(Edge road, double distanceLocation, int timeLeft) {
+    public Lights(Edge road, int timeLeft, double distanceLocation) {
         this.road = road;
         this.distanceLocation = distanceLocation;
         this.timeLeft = timeLeft;

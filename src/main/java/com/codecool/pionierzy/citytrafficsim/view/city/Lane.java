@@ -2,20 +2,17 @@ package com.codecool.pionierzy.citytrafficsim.view.city;
 
 import com.codecool.pionierzy.citytrafficsim.model.city.Edge;
 import com.codecool.pionierzy.citytrafficsim.model.vehicles.Vehicle;
-import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
 
-import java.util.ArrayList;
-
 
 public class Lane extends AnchorPane {
 
-    private static final int width = 60;
-    private static final Color color = Color.GRAY;
+    public static final int width = 60;
+    private static final Color color = Color.GREY;
     private double height;
     private double angle;
     private Edge modelEdge;
@@ -51,14 +48,21 @@ public class Lane extends AnchorPane {
         this.getChildren().add(v.getCarView());
         this.setTopAnchor(v.getCarView(), this.height - v.getCarView().getHeight() - v.getDistanceTravelled());//it would be easier to manage with left side traffic
         this.setLeftAnchor(v.getCarView(), (width - v.getCarView().getWidth()) / 2);
-        this.toFront();
+        //this.toFront();
 
     }
 
     public void moveVehicle(Vehicle v) {
         this.setTopAnchor(v.getCarView(), this.height - v.getCarView().getHeight() - v.getDistanceTravelled());//it would be easier to manage with left side traffic
         this.setLeftAnchor(v.getCarView(), (width - v.getCarView().getWidth()) / 2);
-        this.toFront();
+        //this.toFront();
+    }
+
+    public void setLights(LightsDisplay lightsDisplay){
+        this.setTopAnchor(lightsDisplay, lightsDisplay.lights.getDistanceLocation());
+        this.setLeftAnchor(lightsDisplay, 0.0);
+        this.getChildren().add(lightsDisplay);
+        lightsDisplay.toFront();
     }
 
     public void deleteCarView(Vehicle v){
