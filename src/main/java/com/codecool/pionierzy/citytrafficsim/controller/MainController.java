@@ -90,9 +90,9 @@ public class MainController {
         VehicleGenerator generator = new VehicleGenerator(simLoop);
         generator.addToStartEdges(roads.get(roads.size() - 1)); //simple one edge
 
-        Lights left = new Lights(roads.get(5), 5, 10);
+        Lights left = new Lights(roads.get(5), 20, 10);
         roads.get(5).setTrafficLight(left);
-        Lights right = new Lights(roads.get(20), 5, 10);
+        Lights right = new Lights(roads.get(20), 20, 10);
         roads.get(20).setTrafficLight(right);
         Lights down = new Lights(roads.get(15), 10, 10);
         roads.get(15).setTrafficLight(down);

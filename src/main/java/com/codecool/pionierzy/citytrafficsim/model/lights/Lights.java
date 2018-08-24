@@ -5,11 +5,11 @@ import com.codecool.pionierzy.citytrafficsim.model.city.Edge;
 public class Lights {
     private Edge road;
     private double distanceLocation;
-    private final int CYCLETIME = 10;
+    private final int CYCLETIME = 20;
     private int timeLeft;
     private LightsStatus lightsStatus = LightsStatus.GREEN;
     private final int YELLOWDURATION = 1;
-    private final int GREENDURATION = 4;
+    private final int GREENDURATION = 9;
     //private double distanceFromEnding = 35;
 
     public Lights(Edge road, int timeLeft) {
@@ -43,7 +43,7 @@ public class Lights {
     public void controlLightsStatus() {
         switch (timeLeft) {
             case 0:
-                this.timeLeft = 10;
+                this.timeLeft = CYCLETIME;
             case CYCLETIME:
                 this.lightsStatus = LightsStatus.GREEN;
                 break;
