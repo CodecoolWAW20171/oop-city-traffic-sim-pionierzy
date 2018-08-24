@@ -14,10 +14,10 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class VehicleGenerator implements Runnable {
-    private final int CAR_INTENSITY = 5;
-    private final int TRUCK_INTENSITY = 2;
-    private final int MOTORCYCLE_INTENSITY = 2;
-    private final int INTERVAL = 2; // sec
+    private final int CAR_PARTICIPATION = 9;
+    private final int TRUCK_PARTICIPATION = 2;
+    private final int MOTORCYCLE_PARTICIPATION = 1;
+    private final int INTERVAL = 1; // sec
     private ArrayList<Edge> startEdges = new ArrayList<Edge>();
     private SimLoop simLoop;
     private Random random = new Random();
@@ -31,15 +31,15 @@ public class VehicleGenerator implements Runnable {
     @Override
     public void run() {
         for (Edge startEdge : startEdges) {
-            randint = random.nextInt(CAR_INTENSITY + TRUCK_INTENSITY + MOTORCYCLE_INTENSITY);
+            randint = random.nextInt(CAR_PARTICIPATION + TRUCK_PARTICIPATION + MOTORCYCLE_PARTICIPATION);
 
-            if (randint < CAR_INTENSITY) {
+            if (randint < CAR_PARTICIPATION) {
                 Car v = new Car(startEdge);
                 createVehicle(v, startEdge);
-            } else if (randint < CAR_INTENSITY + TRUCK_INTENSITY) {
+            } else if (randint < CAR_PARTICIPATION + TRUCK_PARTICIPATION) {
                 Truck v = new Truck(startEdge);
                 createVehicle(v, startEdge);
-            } else if (randint < CAR_INTENSITY + TRUCK_INTENSITY + MOTORCYCLE_INTENSITY) {
+            } else if (randint < CAR_PARTICIPATION + TRUCK_PARTICIPATION + MOTORCYCLE_PARTICIPATION) {
                 Motorcycle v = new Motorcycle(startEdge);
                 createVehicle(v, startEdge);
             } else {
