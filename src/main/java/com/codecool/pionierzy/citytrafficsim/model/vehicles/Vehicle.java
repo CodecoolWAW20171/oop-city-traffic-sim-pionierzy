@@ -26,7 +26,7 @@ public abstract class Vehicle {
     public void move() {
         boolean canSpeedUp = true;
         Lights light = getCurrentRoad().getTrafficLight();
-        double lightsDistance = 1.5 * 11;
+        double lightsDistance = 1.5 * 15;
         List<Vehicle> vehicleList = this.currentRoad.getVehicles();
 
         if (light != null && light.getLightsStatus() != LightsStatus.GREEN) {
@@ -34,7 +34,7 @@ public abstract class Vehicle {
                 speed = 0;
                 canSpeedUp = false;
             } else if (this.distanceTravelled + 120 * speed > this.currentRoad.getLength() - lightsDistance && this.distanceTravelled < this.currentRoad.getLength() && light.getLightsStatus() == LightsStatus.RED) {
-                slowDown(0.8);
+                slowDown(0.6);
                 canSpeedUp = false;
             } else if (this.distanceTravelled + 360 * speed > this.currentRoad.getLength() - lightsDistance && this.distanceTravelled < this.currentRoad.getLength()) {
                 slowDown(0.1);
@@ -46,6 +46,7 @@ public abstract class Vehicle {
                 if (vehicle.equals(this)) continue;
                 if (vehicle.getSpeed() == 0 && vehicle.getDistanceTravelled() > this.distanceTravelled && this.distanceTravelled + speed * 15 > vehicle.getDistanceTravelled()) {
                     speed = 0;
+                    break;
                 }
                 if (this.distanceTravelled < vehicle.distanceTravelled && this.distanceTravelled + 45 * speed > vehicle.distanceTravelled) {
                     slowDown(0.9);
@@ -56,8 +57,12 @@ public abstract class Vehicle {
                     if (vehicle.getSpeed() <= this.speed) {
                         if (this.distanceTravelled + 45 * speed >= vehicle.getDistanceTravelled()) {
                             slowDown(1.0);
+                            canSpeedUp = false;
+                            break;
                         } else {
                             slowDown(0.6);
+                            canSpeedUp = false;
+                            break;
                         }
                     } else {
                         if (this.distanceTravelled + 30 * speed >= vehicle.getDistanceTravelled()) {
