@@ -13,13 +13,13 @@ import java.util.Random;
 
 public abstract class Vehicle {
 
-    private double speed = 0;
     double acceleration;
     double deceleration;
     Edge currentRoad;
     double MAXSPEED;
-    private double distanceTravelled = 0;
     NetworkNode destination;
+    private double speed = 0;
+    private double distanceTravelled = 0;
     private Rectangle vehicleView;
 
 
@@ -41,7 +41,8 @@ public abstract class Vehicle {
                 canSpeedUp = false;
             }
 
-        } else if (!vehicleList.isEmpty()) {
+        }
+        if (!vehicleList.isEmpty()) {
             for (Vehicle vehicle : vehicleList) {
                 if (vehicle.equals(this)) continue;
                 if (vehicle.getSpeed() < acceleration * 15 && vehicle.getDistanceTravelled() > this.distanceTravelled && this.distanceTravelled + speed * 30 > vehicle.getDistanceTravelled()) {
