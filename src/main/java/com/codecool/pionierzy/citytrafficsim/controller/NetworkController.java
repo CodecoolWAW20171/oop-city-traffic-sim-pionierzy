@@ -13,12 +13,12 @@ import java.util.Scanner;
 public class NetworkController {
 
     private CityNetwork network;
-    private LightsNetwork lightsNetwork;
-
     private NetworkDisplay networkDisplay;
 
     void loadSampleNetwork(Pane container) {
         network = loadMap(getClass().getResource("/sample.txt").getFile());
+        System.out.println(network);
+        System.out.println(network.getConnections());
 
         // Setup display
         networkDisplay = new NetworkDisplay(network);
@@ -37,8 +37,8 @@ public class NetworkController {
      *  blank line
      * v w (int) edge connecting vertices v and w
      * ...
-     * @param fileName
-     * @return
+     * @param fileName location of file with a map.
+     * @return CityNetwork object with created network
      */
     CityNetwork loadMap(String fileName) {
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
@@ -81,12 +81,8 @@ public class NetworkController {
             String[] line = reader.readLine().split(" ");
             int v = Integer.parseInt(line[0]);
             int w = Integer.parseInt(line[1]);
-            Vertex from =  network.getVertex(v);
-            Vertex to =  network.getVertex(w);
-            double length = Math.sqrt(Math.pow(from.getX() - to.getX(), 2) +
-                    Math.pow(from.getY() - to.getY(), 2));
 
-            network.addEdge(new Edge(from, to, length));
+            network.addEdge(new Edge(network.getVertex(v), network.getVertex(w)));
         }
 
     }

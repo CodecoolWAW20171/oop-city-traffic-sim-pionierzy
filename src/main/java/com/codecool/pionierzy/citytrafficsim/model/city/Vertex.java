@@ -5,6 +5,10 @@ public class Vertex {
     private final double x;
     private final double y;
 
+    public Vertex(int v) {
+        this(v, 0, 0);
+    }
+
     public Vertex(int v, double x, double y) {
         this.v = v;
         this.x = x;
@@ -21,6 +25,23 @@ public class Vertex {
 
     public double getY() {
         return y;
+    }
+
+    public double distanceTo(Vertex other) {
+        return Math.sqrt(Math.pow(this.x - other.x, 2) + Math.pow(this.y - other.y, 2));
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+        if (!(obj instanceof Vertex)) return false;
+        Vertex other = (Vertex) obj;
+        return this.v == other.v;
+    }
+
+    @Override
+    public int hashCode() {
+        return v;
     }
 
     @Override

@@ -1,12 +1,16 @@
 package com.codecool.pionierzy.citytrafficsim.model.city;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class CityNetwork {
     private final int V;    // number of vertices
     private int E;          // number of edges
     private List<List<Edge>> adj;   // adjacency list
     private Vertex[] vertices;
+    // TODO: Connections collection
+    private Set<Connection> connections;
+
 
     public CityNetwork(int V) {
         this.V = V;
@@ -16,6 +20,7 @@ public class CityNetwork {
             adj.add(v, new LinkedList<>());
         }
         vertices = new Vertex[V];
+        this.connections = new LinkedHashSet<>();
     }
 
     public int getV() {
@@ -28,6 +33,9 @@ public class CityNetwork {
 
     public void addEdge(Edge e) {
         adj.get(e.from().v()).add(e);
+        if (!connections.add(new Connection(e))) {
+            System.out.println("Exists");
+        }
         E++;
     }
 
@@ -43,6 +51,13 @@ public class CityNetwork {
         return edges;
     }
 
+    public Iterable<Edge> getEdgesBetween(int v, int w) {
+        List<Edge> edges = new LinkedList<>();
+        edges.addAll(adj.get(v).stream().filter(e -> e.to().v() == w).collect(Collectors.toList()));
+        edges.addAll(adj.get(w).stream().filter(e -> e.to().v() == v).collect(Collectors.toList()));
+        return edges;
+    }
+
     public Vertex getVertex(int v) {
         return vertices[v];
     }
@@ -50,6 +65,10 @@ public class CityNetwork {
     public void addVertex(Vertex vertex) {
         int v = vertex.v();
         vertices[v] = vertex;
+    }
+
+    public Set<Connection> getConnections() {
+        return connections;
     }
 
     @Override

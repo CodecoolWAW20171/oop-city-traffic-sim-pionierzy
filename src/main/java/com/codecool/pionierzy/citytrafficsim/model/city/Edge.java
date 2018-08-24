@@ -11,6 +11,10 @@ public class Edge {
 
     private List<Vehicle> vehicles;
 
+    public Edge(Vertex start, Vertex end) {
+        this(start, end, start.distanceTo(end));
+    }
+
     public Edge(Vertex start, Vertex end, double length) {
         this.start = start;
         this.end = end;
@@ -27,6 +31,22 @@ public class Edge {
 
     public double getLength() {
         return length;
+    }
+
+    public Edge reversed() {
+        return new Edge(end, start, length);
+    }
+
+    public boolean isSameConnection(Edge other) {
+        return this.equals(other) || this.equals(other.reversed());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+        if (!(obj instanceof Edge)) return false;
+        Edge other = (Edge) obj;
+        return other.start.equals(this.start) && other.end.equals(this.end);
     }
 
     @Override
