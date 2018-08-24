@@ -45,7 +45,7 @@ public abstract class Vehicle {
         if (!vehicleList.isEmpty()) {
             for (Vehicle vehicle : vehicleList) {
                 if (vehicle.equals(this)) continue;
-                if (vehicle.getSpeed() < acceleration * 15 && vehicle.getDistanceTravelled() > this.distanceTravelled && this.distanceTravelled + speed * 30 > vehicle.getDistanceTravelled()) {
+                if (vehicle.getSpeed() < acceleration * 15 && vehicle.getDistanceTravelled() > this.distanceTravelled && this.distanceTravelled + speed * 60 > vehicle.getDistanceTravelled()) {
                     speed = 0;
                     break;
                 }
