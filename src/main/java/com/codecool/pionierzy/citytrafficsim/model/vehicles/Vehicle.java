@@ -44,7 +44,7 @@ public abstract class Vehicle {
         } else if (!vehicleList.isEmpty()) {
             for (Vehicle vehicle : vehicleList) {
                 if (vehicle.equals(this)) continue;
-                if (vehicle.getSpeed() == 0 && vehicle.getDistanceTravelled() > this.distanceTravelled && this.distanceTravelled + speed * 15 > vehicle.getDistanceTravelled()) {
+                if (vehicle.getSpeed() < acceleration * 15 && vehicle.getDistanceTravelled() > this.distanceTravelled && this.distanceTravelled + speed * 30 > vehicle.getDistanceTravelled()) {
                     speed = 0;
                     break;
                 }
@@ -57,16 +57,12 @@ public abstract class Vehicle {
                     if (vehicle.getSpeed() <= this.speed) {
                         if (this.distanceTravelled + 45 * speed >= vehicle.getDistanceTravelled()) {
                             slowDown(1.0);
-                            canSpeedUp = false;
-                            break;
                         } else {
                             slowDown(0.6);
-                            canSpeedUp = false;
-                            break;
                         }
                     } else {
                         if (this.distanceTravelled + 30 * speed >= vehicle.getDistanceTravelled()) {
-                            slowDown(0.8);
+                            slowDown(1.0);
                         } else if (this.distanceTravelled + 60 * speed >= vehicle.getDistanceTravelled()) {
                             slowDown(0.4);
                         }
