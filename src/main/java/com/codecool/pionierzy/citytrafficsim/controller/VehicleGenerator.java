@@ -14,10 +14,10 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class VehicleGenerator implements Runnable {
-    private final int CAR_INTENSITY = 5;
+    private final int CAR_INTENSITY = 9;
     private final int TRUCK_INTENSITY = 2;
-    private final int MOTORCYCLE_INTENSITY = 2;
-    private final int INTERVAL = 2; // sec
+    private final int MOTORCYCLE_INTENSITY = 1;
+    private final int INTERVAL = 1; // sec
     private ArrayList<Edge> startEdges = new ArrayList<Edge>();
     private SimLoop simLoop;
     private Random random = new Random();
